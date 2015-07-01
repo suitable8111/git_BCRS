@@ -37,7 +37,6 @@ class DataModel : NSObject, NSXMLParserDelegate {
         }
         
         stringURL = stringURL + String(timeInt)
-        println(stringURL)
         var url = NSURL(string: stringURL)
         parser = NSXMLParser(contentsOfURL: url)!
         parser.delegate = self

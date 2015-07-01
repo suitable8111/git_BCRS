@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import Social
 
-class DetailListViewController : UIViewController, UIAlertViewDelegate {
+class DetailListViewController : UIViewController, UIAlertViewDelegate, UIScrollViewDelegate {
 
     var _detailModelData:DetailDataModel!
     var titleName : String = ""
@@ -25,16 +25,18 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate {
     var path:String = ""
     //맵 찾기
     var matchingItems: [MKMapItem] = [MKMapItem]()
+    //dDay계산
+    let date = NSDate()
+    let formatter = NSDateFormatter()
     
-    
-    @IBOutlet weak var backGroundView: UIView!
+    //@IBOutlet weak var backGroundView: UIView!
     @IBOutlet weak var btnsView: UIView!
     @IBOutlet weak var labelsView: UIView!
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var placeLabel: UILabel!
-    @IBOutlet var phoneLabel: UIButton!
-    @IBOutlet var homePageLabel: UIButton!
+    @IBOutlet var phoneLabel: UILabel!
+    @IBOutlet var homePageLabel: UILabel!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var periodLabel: UILabel!
     @IBOutlet weak var startText: UILabel!
@@ -42,9 +44,15 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate {
     @IBOutlet weak var gapLabel: UILabel!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
+    @IBOutlet weak var phoneButton: UIButton!
+    @IBOutlet weak var homePageButton: UIButton!
+    @IBOutlet weak var bgImage2: UIImageView!
+    @IBOutlet weak var bgImage3: UIImageView!
     @IBOutlet weak var backGroundImg: UIImageView!
     @IBOutlet weak var flagImg: UIImageView!
     @IBOutlet weak var clockImg: UIImageView!
+    
+    @IBOutlet weak var currentView: UIImageView!
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -64,9 +72,16 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBar.hidden = false
+        self.navigationController?.navigationBar.hidden = true
         let path = getFileName("myFavorite.plist")
         let fileManager = NSFileManager.defaultManager()
+        
+        let frameForHeight : CGFloat = view.frame.size.height/667
+        let frameForWidth : CGFloat = view.frame.size.width/375
+        let originForX : CGFloat = view.center.x/187.5
+        let originForY : CGFloat = view.center.y/333.5
+
+        formatter.dateFormat = "yyyy-MM-dd"
         if(!fileManager.fileExistsAtPath(path)){
             let orgPath = NSBundle.mainBundle().pathForResource("myFavorite", ofType: "plist")
             fileManager.copyItemAtPath(orgPath!, toPath: path, error: nil)
@@ -75,75 +90,104 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate {
         
         self.detailModelData()
         self._detailModelData.beginParsing(curruntState, dataSid: serialID)
-        
+        self.automaticallyAdjustsScrollViewInsets = false
         self.makeMapView()
         
-        if((view.frame.width)/337 != 1){
+        self.scrollView.delegate = self
+        
+        if(frameForHeight != 1){
             
-            if((view.center.y)/333.5 > 1){
-                contextView.center = CGPoint(x: contextView.center.x, y: contextView.center.y*(view.center.y)/333.5)
-                labelsView.center = CGPoint(x: labelsView.center.x, y: labelsView.center.y*(view.center.y)/333.5)
-                btnsView.center = CGPoint(x: btnsView.center.x, y: btnsView.center.y*(view.center.y)/333.5)
-                contextView.frame.size = CGSizeMake(contextView.frame.size.width*(view.frame.width)/375,contextView.frame.height*(view.frame.height)/667)
-                scrollView.contentSize =  CGSizeMake(view.frame.width*2, view.frame.height*(view.frame.height)/667)
-                labelsView.frame.size = CGSizeMake(labelsView.frame.size.width*(view.frame.width)/375,labelsView.frame.height*(view.frame.height)/667)
+            if(frameForHeight > 1){
+                contextView.center = CGPoint(x: contextView.center.x, y: contextView.center.y*originForY)
+                labelsView.center = CGPoint(x: labelsView.center.x, y: labelsView.center.y*originForY)
+                btnsView.center = CGPoint(x: btnsView.center.x, y: btnsView.center.y*originForY)
+                contextView.frame.size = CGSizeMake(contextView.frame.size.width*frameForWidth,contextView.frame.height*frameForHeight)
+                scrollView.contentSize =  CGSizeMake(view.frame.width*2, view.frame.height*frameForHeight)
+                labelsView.frame.size = CGSizeMake(labelsView.frame.size.width*frameForWidth,labelsView.frame.height*frameForHeight)
             }else {
-                contextView.frame.size = CGSizeMake(contextView.frame.size.width*(view.frame.width)/375,contextView.frame.height)
-                labelsView.frame.size = CGSizeMake(labelsView.frame.size.width*(view.frame.width)/375,labelsView.frame.height)
-                scrollView.contentSize =  CGSizeMake(view.frame.width*2, 720)
-                favorBtn.center = CGPoint(x: favorBtn.center.x*(view.center.x)/187.5, y: favorBtn.center.y)
-                faceBookBtn.center = CGPoint(x: faceBookBtn.center.x*(view.center.x)/187.5, y: faceBookBtn.center.y)
-                kakoBtn.center = CGPoint(x: kakoBtn.center.x*(view.center.x)/187.5, y: kakoBtn.center.y)
+                contextView.frame.size = CGSizeMake(contextView.frame.size.width*frameForWidth,contextView.frame.height)
+                labelsView.frame.size = CGSizeMake(labelsView.frame.size.width*frameForWidth,labelsView.frame.height)
+                scrollView.contentSize =  CGSizeMake(view.frame.width*2, view.frame.height)
+                favorBtn.center = CGPoint(x: favorBtn.center.x*originForX, y: favorBtn.center.y)
+                faceBookBtn.center = CGPoint(x: faceBookBtn.center.x*originForX, y: faceBookBtn.center.y)
+                kakoBtn.center = CGPoint(x: kakoBtn.center.x*originForX, y: kakoBtn.center.y)
             }
         
-            mapView.frame.origin = CGPoint(x: view.frame.width+10, y: 15)
+            //mapView.frame.origin = CGPoint(x: view.frame.width+10, y: 217)
             
-            segmentControl.center = CGPoint(x: segmentControl.center.x*(view.center.x)/187.5, y: segmentControl.center.y*(view.center.y)/333.5)
+            //segmentControl.center = CGPoint(x: segmentControl.center.x*originForX, y: segmentControl.center.y*originForY)
         
-            titleLabel.frame.size = CGSizeMake(titleLabel.frame.size.width*(view.frame.width)/375,titleLabel.frame.height*(view.frame.height)/667)
-            placeLabel.frame.size = CGSizeMake(placeLabel.frame.size.width*(view.frame.width)/375,placeLabel.frame.height*(view.frame.height)/667)
-            startText.frame.size = CGSizeMake(startText.frame.size.width*(view.frame.width)/375,startText.frame.height*(view.frame.height)/667)
-            endText.frame.size = CGSizeMake(endText.frame.size.width*(view.frame.width)/375,endText.frame.height*(view.frame.height)/667)
-            gapLabel.frame.size = CGSizeMake(gapLabel.frame.size.width*(view.frame.width)/375,gapLabel.frame.height*(view.frame.height)/667)
-            flagImg.frame.size = CGSizeMake(flagImg.frame.size.width*(view.frame.width)/375,flagImg.frame.height*(view.frame.height)/667)
-            clockImg.frame.size = CGSizeMake(clockImg.frame.size.width*(view.frame.width)/375,clockImg.frame.height*(view.frame.height)/667)
-            backGroundImg.frame.size = CGSizeMake(backGroundImg.frame.size.width*(view.frame.width)/375,backGroundImg.frame.height)
-            backGroundView.frame.size = CGSizeMake(backGroundView.frame.size.width*(view.frame.width)/375, backGroundView.frame.height)
-            
-            phoneLabel.frame.size = CGSizeMake(phoneLabel.frame.size.width*(view.frame.width)/375,phoneLabel.frame.height*(view.frame.height)/667)
-            homePageLabel.frame.size = CGSizeMake(homePageLabel.frame.size.width*(view.frame.width)/375,homePageLabel.frame.height*(view.frame.height)/667)
+            titleLabel.frame.size = CGSizeMake(titleLabel.frame.size.width*frameForWidth,titleLabel.frame.height*frameForHeight)
+            placeLabel.frame.size = CGSizeMake(placeLabel.frame.size.width*frameForWidth,placeLabel.frame.height*frameForHeight)
+            startText.frame.size = CGSizeMake(startText.frame.size.width*frameForWidth,startText.frame.height*frameForHeight)
+            endText.frame.size = CGSizeMake(endText.frame.size.width*frameForWidth,endText.frame.height*frameForHeight)
+            gapLabel.frame.size = CGSizeMake(gapLabel.frame.size.width*frameForWidth,gapLabel.frame.height*frameForHeight)
+            flagImg.frame.size = CGSizeMake(flagImg.frame.size.width*frameForWidth,flagImg.frame.height*frameForHeight)
+            clockImg.frame.size = CGSizeMake(clockImg.frame.size.width*frameForWidth,clockImg.frame.height*frameForHeight)
+            backGroundImg.frame.size = CGSizeMake(backGroundImg.frame.size.width*frameForWidth,backGroundImg.frame.height)
+
+            phoneLabel.frame.size = CGSizeMake(phoneLabel.frame.size.width*frameForWidth,phoneLabel.frame.height*frameForHeight)
+            homePageLabel.frame.size = CGSizeMake(homePageLabel.frame.size.width*frameForWidth,homePageLabel.frame.height*frameForHeight)
         
-            timeLabel.frame.size = CGSizeMake(timeLabel.frame.size.width*(view.frame.width)/375,timeLabel.frame.height*(view.frame.height)/667)
-            periodLabel.frame.size = CGSizeMake(periodLabel.frame.size.width*(view.frame.width)/375,periodLabel.frame.height*(view.frame.height)/667)
-        
-        
-            btnsView.frame.size = CGSizeMake(btnsView.frame.size.width*(view.frame.width)/375,btnsView.frame.height)
+            timeLabel.frame.size = CGSizeMake(timeLabel.frame.size.width*frameForWidth,timeLabel.frame.height*frameForHeight)
+            periodLabel.frame.size = CGSizeMake(periodLabel.frame.size.width*frameForWidth,periodLabel.frame.height*frameForHeight)
         
         
-            mapView.frame.size = CGSizeMake(mapView.frame.size.width*(view.frame.width)/375,mapView.frame.height*(view.frame.height)/667)
+            btnsView.frame.size = CGSizeMake(btnsView.frame.size.width*frameForWidth,btnsView.frame.height)
         
-            scrollView.frame.size = CGSizeMake(view.frame.width,scrollView.frame.height*(view.frame.height)/667)
         
+            mapView.frame.size = CGSizeMake(mapView.frame.size.width*frameForWidth,mapView.frame.height*frameForHeight)
+        
+            scrollView.frame.size = CGSizeMake(view.frame.width,scrollView.frame.height*frameForHeight)
+        
+        }else {
+            scrollView.contentSize =  CGSizeMake(view.frame.width*2, view.frame.height)
         }
         ///////////////////
         
         titleLabel.text = _detailModelData.elements.valueForKey("title") as? String
         placeLabel.text = _detailModelData.elements.valueForKey("place") as? String
-        phoneLabel.setTitle(_detailModelData.elements.valueForKey("phoneNum") as? String, forState: UIControlState.Normal)
-        homePageLabel.setTitle(_detailModelData.elements.valueForKey("homePage") as? String, forState: UIControlState.Normal)
+        phoneLabel.text = _detailModelData.elements.valueForKey("phoneNum") as? String
+        homePageLabel.text = _detailModelData.elements.valueForKey("homePage") as? String
         contextView.text = _detailModelData.elements.valueForKey("context") as? String
+        
+        if(phoneLabel.text == ""){
+            phoneButton.hidden = true
+        }else{
+            phoneButton.hidden = false
+        }
+        if(homePageLabel.text == ""){
+            homePageButton.hidden = true
+        }else{
+            homePageButton.hidden = false
+        }
         if (curruntState == "FESTIVAL"){
             timeLabel.text = "홈페이지를 참고해주세요!"
             periodLabel.text = "무료!"
+            bgImage2.image = UIImage(named: "Fastival_bg2.png")
+            bgImage3.image = UIImage(named: "Fastival_bg3.png")
         }else {
             timeLabel.text = _detailModelData.elements.valueForKey("time") as? String
             periodLabel.text = _detailModelData.elements.valueForKey("period") as? String
+            
         }
+        
         if (curruntState == "MUSICAL") {
             startText.text = _detailModelData.elements.valueForKey("time") as? String
             gapLabel.text = ""
+            bgImage2.image = UIImage(named: "Musical_bg2.png")
+            bgImage3.image = UIImage(named: "Musical_bg3.png")
         }else {
             startText.text = startDate
+        }
+        
+        if (curruntState == "MUSICDANCE"){
+            bgImage2.image = UIImage(named: "Music_bg2.png")
+            bgImage3.image = UIImage(named: "Music_bg3.png")
+        }
+        if (curruntState == "EXHIBIT"){
+            bgImage2.image = UIImage(named: "Art_bg2.png")
+            bgImage3.image = UIImage(named: "Art_bg3.png")
         }
         endText.text = endDate
         
@@ -261,6 +305,7 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate {
         let favorEndDate : String = endDate
         var favorStartDate : String = ""
         let favorDataSid : String = serialID
+        var favorDday : String = ""
         _detailModelData.beginParsing("MUSICAL", dataSid: favorDataSid)
         //뮤지컬은 장소를 DetailDataModel에서 받아야한다
         if curruntState == "MUSICAL" {
@@ -268,8 +313,20 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate {
         }else {
             favorStartDate = startDate
         }
+        
+        let currentDate = formatter.stringFromDate(date)
+        let favorDate = replaceSpeciaChar(favorStartDate)
+
+        let date1 = formatter.dateFromString(currentDate)
+        let date2 = formatter.dateFromString(favorDate)
+        
+        let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        let c1 = cal!.components(NSCalendarUnit.DayCalendarUnit, fromDate: date1!, toDate: date2!, options: NSCalendarOptions(0))
+        
+        favorDday = String(c1.day)
+        
         favorPlace = _detailModelData.elements.valueForKey("place") as! String
-        let dicInfo:Dictionary<String, String> = ["title":favorTitle,"startDate": favorStartDate,"endDate": favorEndDate,"place":favorPlace,"serialID": favorDataSid]
+        let dicInfo:Dictionary<String, String> = ["title":favorTitle,"startDate": favorStartDate,"endDate": favorEndDate,"place":favorPlace,"serialID": favorDataSid, "dDay" : favorDday]
         
         arrFavorite.addObject(dicInfo)
         arrFavorite.writeToFile(path, atomically: true)
@@ -316,5 +373,31 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate {
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }
+    @IBAction func actPrevious(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
     
+    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        scrollView.userInteractionEnabled = false
+    }
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        var indexPage = scrollView.contentOffset.x / scrollView.frame.width
+        if(indexPage == 0){
+            UIView.animateWithDuration(0.5, delay: 0.00, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
+                self.currentView.transform = CGAffineTransformMakeTranslation(0, 0)
+                }, completion: nil)
+        }else{
+            UIView.animateWithDuration(0.5, delay: 0.00, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
+                self.currentView.transform = CGAffineTransformMakeTranslation(187, 0);
+                }, completion: nil)
+        }
+        scrollView.userInteractionEnabled = true
+    }
+    func replaceSpeciaChar(str:String) -> String {
+        var str_change = NSMutableString(string: str)
+        str_change.replaceOccurrencesOfString(".", withString: "-", options: NSStringCompareOptions.LiteralSearch, range: NSMakeRange(0, str_change.length))
+        
+        return str_change as String
+    }
+
 }

@@ -14,6 +14,7 @@ class WebPageController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.hidden = false
         let requestURL = NSURL(string: url!)
         let request = NSURLRequest(URL: requestURL!)
         webView.loadRequest(request)

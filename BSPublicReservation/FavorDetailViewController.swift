@@ -8,7 +8,9 @@
 
 import UIKit
 import MapKit
-class FavorDetailViewController : UIViewController, MKMapViewDelegate{
+import Social
+
+class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollViewDelegate{
     
     var _detailModelData : DetailDataModel!
     var startDate : String = ""
@@ -26,9 +28,15 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate{
     @IBOutlet weak var periodLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
-    @IBOutlet weak var contextView: UITextView!
+
+
+    @IBOutlet weak var phoneBtn: UIButton!
+    @IBOutlet weak var homePageBtn: UIButton!
+    @IBOutlet weak var faceBookBtn: UIButton!
     @IBOutlet weak var backGroundImg: UIImageView!
-    @IBOutlet weak var backGroundView: UIView!
+
+    
+    @IBOutlet weak var currentView: UIImageView!
     @IBOutlet weak var labelsView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var selectedControl: UISegmentedControl!
@@ -45,81 +53,86 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate{
         self.detailDataModel()
         _detailModelData.beginParsing("FESTIVAL", dataSid: serialID)
         self.makeMapView()
+        self.automaticallyAdjustsScrollViewInsets = false
+        self.navigationController?.navigationBar.hidden = true
+        
+        self.scrollView.delegate = self
+        let frameForHeight : CGFloat = view.frame.size.height/667
+        let frameForWidth : CGFloat = view.frame.size.width/375
+        let originForX : CGFloat = view.center.x/187.5
+        let originForY : CGFloat = view.center.y/333.5
         
         titleLabel.text = _detailModelData.elements.valueForKey("title") as? String
         placeLabel.text = _detailModelData.elements.valueForKey("place") as? String
         phoneLabel.text = _detailModelData.elements.valueForKey("phoneNum") as? String
         homePageLabel.text = _detailModelData.elements.valueForKey("homePage") as? String
-        contextView.text = _detailModelData.elements.valueForKey("context") as? String
         timeLabel.text = _detailModelData.elements.valueForKey("time") as? String
         periodLabel.text = _detailModelData.elements.valueForKey("period") as? String
         startLabel.text = startDate
         endLabel.text = endDate
-        
-        if((view.frame.width)/375 != 1){
+        if(phoneLabel.text == ""){
+            phoneBtn.hidden = true
+        }else{
+            phoneBtn.hidden = false
+        }
+        if(homePageLabel.text == ""){
+            homePageBtn.hidden = true
+        }else{
+            homePageBtn.hidden = false
+        }
+        if(frameForHeight != 1){
             
-            if((view.center.y)/333.5 > 1){
-                labelsView.center = CGPoint(x: labelsView.center.x, y: labelsView.center.y*(view.center.y)/333.5)
-                contextView.frame.size = CGSizeMake(contextView.frame.size.width*(view.frame.width)/375,contextView.frame.height*(view.frame.height)/667)
-                scrollView.contentSize =  CGSizeMake(view.frame.width*2, view.frame.height*(view.frame.height)/667)
-                labelsView.frame.size = CGSizeMake(labelsView.frame.size.width*(view.frame.width)/375,labelsView.frame.height*(view.frame.height)/667)
-                
-                
+            if(frameForHeight > 1){
+                labelsView.center = CGPoint(x: labelsView.center.x, y: labelsView.center.y*originForY)
+                scrollView.contentSize =  CGSizeMake(view.frame.width*2, view.frame.height*frameForHeight)
+                labelsView.frame.size = CGSizeMake(labelsView.frame.size.width*frameForWidth,labelsView.frame.height*frameForHeight)
             }else {
-                contextView.frame.size = CGSizeMake(contextView.frame.size.width*(view.frame.width)/375,contextView.frame.height)
-                labelsView.frame.size = CGSizeMake(labelsView.frame.size.width*(view.frame.width)/375,labelsView.frame.height)
-                scrollView.contentSize =  CGSizeMake(view.frame.width*2, view.frame.height*(view.frame.height)/667*2)
+                labelsView.frame.size = CGSizeMake(labelsView.frame.size.width*frameForWidth,labelsView.frame.height)
+                scrollView.contentSize =  CGSizeMake(view.frame.width*2, view.frame.height*frameForHeight)
                 println(scrollView.frame.height)
             }
            
-            mapView.frame.origin = CGPoint(x: view.frame.width+10, y: 15)
-            
-            titleLabel.frame.size = CGSizeMake(titleLabel.frame.size.width*(view.frame.width)/375,titleLabel.frame.height*(view.frame.height)/667)
-            placeLabel.frame.size = CGSizeMake(placeLabel.frame.size.width*(view.frame.width)/375,placeLabel.frame.height*(view.frame.height)/667)
-            backGroundImg.frame.size = CGSizeMake(backGroundImg.frame.size.width*(view.frame.width)/375,backGroundImg.frame.height)
-            gapLabel.frame.size = CGSizeMake(gapLabel.frame.size.width*(view.frame.width)/375,gapLabel.frame.height*(view.frame.height)/667)
-            
-            backGroundView.frame.size = CGSizeMake(backGroundView.frame.size.width*(view.frame.width)/375, backGroundView.frame.height)
-            
-            phoneLabel.frame.size = CGSizeMake(phoneLabel.frame.size.width*(view.frame.width)/375,phoneLabel.frame.height*(view.frame.height)/667)
-            homePageLabel.frame.size = CGSizeMake(homePageLabel.frame.size.width*(view.frame.width)/375,homePageLabel.frame.height*(view.frame.height)/667)
-            
-            timeLabel.frame.size = CGSizeMake(timeLabel.frame.size.width*(view.frame.width)/375,timeLabel.frame.height*(view.frame.height)/667)
-            periodLabel.frame.size = CGSizeMake(periodLabel.frame.size.width*(view.frame.width)/375,periodLabel.frame.height*(view.frame.height)/667)
             
             
+            titleLabel.frame.size = CGSizeMake(titleLabel.frame.size.width*frameForWidth,titleLabel.frame.height*frameForHeight)
+            placeLabel.frame.size = CGSizeMake(placeLabel.frame.size.width*frameForWidth,placeLabel.frame.height*frameForHeight)
+            backGroundImg.frame.size = CGSizeMake(backGroundImg.frame.size.width*frameForWidth,backGroundImg.frame.height)
+            gapLabel.frame.size = CGSizeMake(gapLabel.frame.size.width*frameForWidth,gapLabel.frame.height*frameForHeight)
             
-            mapView.frame.size = CGSizeMake(mapView.frame.size.width*(view.frame.width)/375,mapView.frame.height*(view.frame.height)/667)
+            phoneLabel.frame.size = CGSizeMake(phoneLabel.frame.size.width*frameForWidth,phoneLabel.frame.height*frameForHeight)
+            homePageLabel.frame.size = CGSizeMake(homePageLabel.frame.size.width*frameForWidth,homePageLabel.frame.height*frameForHeight)
+            
+            timeLabel.frame.size = CGSizeMake(timeLabel.frame.size.width*frameForWidth,timeLabel.frame.height*frameForHeight)
+            periodLabel.frame.size = CGSizeMake(periodLabel.frame.size.width*frameForWidth,periodLabel.frame.height*frameForHeight)
+            
+            mapView.frame.size = CGSizeMake(mapView.frame.size.width*frameForWidth,mapView.frame.height*frameForHeight)
             
             scrollView.frame.size = CGSizeMake(view.frame.width,view.frame.height)
             
+        }else {
+            scrollView.contentSize =  CGSizeMake(view.frame.width*2, view.frame.height)
         }
-        
-        
-        
-        backGroundView.addSubview(titleLabel)
-        backGroundView.addSubview(placeLabel)
-        backGroundView.addSubview(startLabel)
-        backGroundView.addSubview(endLabel)
-        backGroundView.addSubview(gapLabel)
         
         labelsView.addSubview(phoneLabel)
         labelsView.addSubview(homePageLabel)
         labelsView.addSubview(periodLabel)
         labelsView.addSubview(timeLabel)
         
-        scrollView.addSubview(contextView)
+        scrollView.addSubview(titleLabel)
+        scrollView.addSubview(placeLabel)
+        scrollView.addSubview(startLabel)
+        scrollView.addSubview(endLabel)
+        scrollView.addSubview(gapLabel)
+        
         scrollView.addSubview(labelsView)
         scrollView.addSubview(mapView)
 
         
         labelsView.layer.cornerRadius = 5
-        contextView.layer.cornerRadius = 5
         mapView.layer.cornerRadius = 5
         
         mapView.layer.masksToBounds = true
         labelsView.layer.masksToBounds = true
-        contextView.layer.masksToBounds = true
         
     }
     func makeMapView() {
@@ -165,6 +178,44 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate{
             
             break
         }
+    }
+    
+    @IBAction func actPhoneCall(sender: AnyObject) {
+        var alert = UIAlertView(title: "전화걸기", message: "전화 거시겠습니까?", delegate: self, cancelButtonTitle: "취소")
+        alert.addButtonWithTitle("전화걸기")
+        alert.show()
+    }
+    @IBAction func actFaceBook(sender: AnyObject) {
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
+            var fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            
+            self.presentViewController(fbShare, animated: true, completion: nil)
+        } else {
+            var alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+
+    }
+    @IBAction func actPrevios(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
+    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        scrollView.userInteractionEnabled = false
+    }
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        var indexPage = scrollView.contentOffset.x / scrollView.frame.width
+        if(indexPage == 0){
+            UIView.animateWithDuration(0.5, delay: 0.00, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
+                self.currentView.transform = CGAffineTransformMakeTranslation(0, 0)
+                }, completion: nil)
+        }else{
+            UIView.animateWithDuration(0.5, delay: 0.00, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
+                self.currentView.transform = CGAffineTransformMakeTranslation(187, 0);
+                }, completion: nil)
+        }
+        scrollView.userInteractionEnabled = true
     }
 
 }
