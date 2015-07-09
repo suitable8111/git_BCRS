@@ -25,5 +25,6 @@
 #import "KOSessionTask+TalkAPI.h"
 #import "KOSessionTask+StoryAPI.h"
 #import "KOSessionTask+PushAPI.h"
+#import "KOSessionTask+TokenAPI.h"
 
-#define KAKAO_SDK_IOS_VERSION_STRING @"1.0.32"
+#define KAKAO_SDK_IOS_VERSION_STRING @"1.0.34"

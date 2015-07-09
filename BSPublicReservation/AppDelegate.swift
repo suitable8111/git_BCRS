@@ -15,8 +15,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        initPlist()
         return true
+    }
+    func initPlist(){
+        var fileManager = NSFileManager()
+        //var error = NSError()
+        var path = NSString()
+        path = getPlistPath()
+        var success = fileManager.fileExistsAtPath(path as String)
+        
+        if(!success){
+            let defalutPath = NSBundle.mainBundle().resourcePath?.stringByAppendingPathComponent("myFavorite.plist")
+            
+                fileManager.copyItemAtPath(defalutPath!, toPath: path as String, error: nil)
+        }
+        
+    }
+    
+    func getPlistPath() -> String {
+        var docsDir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        let docPath = docsDir[0] as! String
+        let fullName = docPath.stringByAppendingPathComponent("myFavorite.plist")
+        return fullName
     }
 
     func applicationWillResignActive(application: UIApplication) {

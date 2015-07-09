@@ -107,6 +107,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "BSPubilc"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

@@ -10,7 +10,7 @@ import UIKit
 
 class WebPageController : UIViewController {
     @IBOutlet weak var webView: UIWebView!
-    var url : String?
+    var url : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()

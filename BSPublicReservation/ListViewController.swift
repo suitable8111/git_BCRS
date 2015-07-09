@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 
-class ListViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UIAlertViewDelegate{
+class ListViewController : UIViewController, UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate{
     
     var arrFavorite:NSMutableArray!
     
@@ -25,11 +25,11 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
     var date = NSDate()
     var formatter = NSDateFormatter()
     var clickNum : Int = 0
-    
-    //Dynamic TableViewCell var
+    var moveSeletImageX : CGFloat = 125
+//    Dynamic TableViewCell var
     var a : Int = 0
     var b : Int = 0
-    //애니메이션
+//    애니메이션
    
    
     //TABBar버튼들
@@ -53,7 +53,7 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var selectImage: UIImageView!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet var tbView: UITableView!
-    @IBOutlet weak var barSearch: UISearchBar!
+//    @IBOutlet weak var barSearch: UISearchBar!
 
     func modelData() -> DataModel {
         if(_modelData == nil){
@@ -83,32 +83,49 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         }
         
         arrFavorite = NSMutableArray(contentsOfFile: path)
-        checkDday()
+        //checkDday()
         
         let frameForHeight : CGFloat = view.frame.size.height/667
         let frameForWidth : CGFloat = view.frame.size.width/375
-        let originForX : CGFloat = view.center.x/187.5
-        let originForY : CGFloat = view.center.y/333.5
         
+        
+        moveSeletImageX = moveSeletImageX * frameForWidth
         backgroundMusic = self.setupAudioPlayerWithFile("HitB", type:"wav")
         backgroundMusic.play()
         
+        
         tbView.dataSource = self
         tbView.delegate = self
-        tbView.rowHeight = 70
-        barSearch.delegate = self
-        
+        tbView.rowHeight = 70 * frameForHeight
         festivalBtn.alpha = 0
         musicBtn.alpha = 0
         musicalBtn.alpha = 0
         artBtn.alpha = 0
         
-        tbView.backgroundColor = UIColor(red: CGFloat(222/255.0), green: CGFloat(226/255.0), blue: CGFloat(222/255.0), alpha: CGFloat(1.0))
+        tbView.backgroundColor = UIColor.whiteColor()
     
         //contentSize//////////////////////////////////
-        FavorBtn.center = CGPoint(x: FavorBtn.center.x*originForX, y: FavorBtn.center.y)
-        menuBtn.center = CGPoint(x: menuBtn.center.x*originForX, y: menuBtn.center.y)
+        thisMonthBtn.frame.origin = CGPoint(x: thisMonthBtn.frame.origin.x * frameForWidth, y: thisMonthBtn.frame.origin.y * frameForHeight)
+        todayBtn.frame.origin = CGPoint(x: todayBtn.frame.origin.x * frameForWidth, y: todayBtn.frame.origin.y * frameForHeight)
+        nextMonthBtn.frame.origin = CGPoint(x: nextMonthBtn.frame.origin.x * frameForWidth, y: nextMonthBtn.frame.origin.y * frameForHeight)
+        selectImage.frame.origin = CGPoint(x: selectImage.frame.origin.x * frameForWidth, y: selectImage.frame.origin.y * frameForHeight)
+        FavorBtn.frame.origin = CGPoint(x: FavorBtn.frame.origin.x * frameForWidth, y: FavorBtn.frame.origin.y * frameForHeight)
+        tbView.frame.origin = CGPoint(x: tbView.frame.origin.x * frameForWidth, y: tbView.frame.origin.y * frameForHeight)
+
+        
         tbView.frame.size = CGSizeMake(tbView.frame.size.width*frameForWidth,tbView.frame.size.height*frameForHeight)
+        FavorBtn.frame.size = CGSizeMake(FavorBtn.frame.size.width*frameForWidth,FavorBtn.frame.size.height*frameForHeight)
+        menuBtn.frame.size = CGSizeMake(menuBtn.frame.size.width*frameForWidth,menuBtn.frame.size.height*frameForHeight)
+        menuView.frame.size = CGSizeMake(menuView.frame.size.width*frameForWidth,menuView.frame.size.height*frameForHeight)
+        festivalBtn.frame.size = CGSizeMake(festivalBtn.frame.size.width*frameForWidth,festivalBtn.frame.size.height*frameForHeight)
+        musicBtn.frame.size = CGSizeMake(musicBtn.frame.size.width*frameForWidth,musicBtn.frame.size.height*frameForHeight)
+        artBtn.frame.size = CGSizeMake(artBtn.frame.size.width*frameForWidth,artBtn.frame.size.height*frameForHeight)
+        musicalBtn.frame.size = CGSizeMake(musicalBtn.frame.size.width*frameForWidth,musicalBtn.frame.size.height*frameForHeight)
+        bgImage.frame.size = CGSizeMake(bgImage.frame.size.width*frameForWidth,bgImage.frame.size.height*frameForHeight)
+        selectImage.frame.size = CGSizeMake(selectImage.frame.size.width*frameForWidth,selectImage.frame.size.height*frameForHeight)
+        thisMonthBtn.frame.size = CGSizeMake(thisMonthBtn.frame.size.width*frameForWidth,thisMonthBtn.frame.size.height*frameForHeight)
+        nextMonthBtn.frame.size = CGSizeMake(nextMonthBtn.frame.size.width*frameForWidth,nextMonthBtn.frame.size.height*frameForHeight)
+        todayBtn.frame.size = CGSizeMake(todayBtn.frame.size.width*frameForWidth,todayBtn.frame.size.height*frameForHeight)
         ////////////////////////////////////////////////
         
         self.modelData()
@@ -178,7 +195,8 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         //contentSize//////////////////////////////////
         b = tbView.visibleCells().count + 1
         if a < b {
-            titleLabel.frame.size = CGSizeMake(titleLabel.frame.width*(view.frame.size.width)/375, titleLabel.frame.height*(view.frame.height)/667)
+            titleLabel.frame.size = CGSizeMake(titleLabel.frame.size.width*view.frame.size.width/375,titleLabel.frame.size.height*view.frame.size.height/667)
+            titleLabel.frame.origin = CGPoint(x: titleLabel.frame.origin.x * view.frame.width/375, y: titleLabel.frame.origin.y * view.frame.height/667)
         a += 1
         }
         ///////////////////////////////////////////////
@@ -200,18 +218,18 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         
         
         if(indexPath.row % 2 == 1){
-            cell?.backgroundColor = UIColor(red: CGFloat(222/255.0), green: CGFloat(226/255.0), blue: CGFloat(222/255.0), alpha: CGFloat(1.0))
-        }else{
             cell?.backgroundColor = UIColor.whiteColor()
+        }else{
+            cell?.backgroundColor = UIColor(red: CGFloat(237/255.0), green: CGFloat(236/255.0), blue: CGFloat(236/255.0), alpha: CGFloat(1.0))
         }
         
         
         return cell!
     }
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
+//    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+//        searchBar.resignFirstResponder()
+//    }
+//    
     
     
     //정보전달 부분
@@ -233,19 +251,22 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
             DetailVC.placeName = _detailModelData.elements.valueForKey("place") as! String
             DetailVC.curruntState = curruntState
         }
+        if(segue.identifier == "goFavor"){
+            
+        }
         
     }
     
     
     
     @IBAction func actfestivalSelect(sender: AnyObject) {
-        UIView.animateWithDuration(1.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
+        UIView.animateWithDuration(1.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
             self.festivalBtn.alpha = CGFloat(0.0)
             self.artBtn.alpha = CGFloat(0.0)
             self.musicalBtn.alpha = CGFloat(0.0)
             self.musicBtn.alpha = CGFloat(0.0)
             }, completion: nil)
-        UIView.animateWithDuration(1.5, delay: 0.5, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
+        UIView.animateWithDuration(1.2, delay: 0.5, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
             self.menuView.frame.size = CGSizeMake(self.menuView.frame.width, 0)
             }, completion: nil)
         clickNum = clickNum + 1
@@ -257,17 +278,17 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
 
     }
     @IBAction func actMusicSelect(sender: AnyObject) {
-        UIView.animateWithDuration(1.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
+        UIView.animateWithDuration(1.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
             self.festivalBtn.alpha = CGFloat(0.0)
             self.artBtn.alpha = CGFloat(0.0)
             self.musicalBtn.alpha = CGFloat(0.0)
             self.musicBtn.alpha = CGFloat(0.0)
             }, completion: nil)
-        UIView.animateWithDuration(1.5, delay: 0.5, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
+        UIView.animateWithDuration(1.2, delay: 0.5, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
             self.menuView.frame.size = CGSizeMake(self.menuView.frame.width, 0)
             }, completion: nil)
         clickNum = clickNum + 1
-        menuBtn.setTitle("음악/예술", forState: UIControlState.Normal)
+        menuBtn.setTitle("음악/무용", forState: UIControlState.Normal)
         //menuBtn.setImage(UIImage(named: "Music_Name_Bt.png"), forState: UIControlState.Normal)
         bgImage.image = UIImage(named: "Music_bg1.png")
         curruntState = "MUSICDANCE"
@@ -275,13 +296,13 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
 
     }
     @IBAction func actMusicalSelect(sender: AnyObject) {
-        UIView.animateWithDuration(1.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
+        UIView.animateWithDuration(1.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
             self.festivalBtn.alpha = CGFloat(0.0)
             self.artBtn.alpha = CGFloat(0.0)
             self.musicalBtn.alpha = CGFloat(0.0)
             self.musicBtn.alpha = CGFloat(0.0)
             }, completion: nil)
-        UIView.animateWithDuration(1.5, delay: 0.5, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
+        UIView.animateWithDuration(1.2, delay: 0.5, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
             self.menuView.frame.size = CGSizeMake(self.menuView.frame.width, 0)
             }, completion: nil)
         clickNum = clickNum + 1
@@ -293,13 +314,13 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         
     }
     @IBAction func actArtSelect(sender: AnyObject) {
-        UIView.animateWithDuration(1.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
+        UIView.animateWithDuration(1.2, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
             self.festivalBtn.alpha = CGFloat(0.0)
             self.artBtn.alpha = CGFloat(0.0)
             self.musicalBtn.alpha = CGFloat(0.0)
             self.musicBtn.alpha = CGFloat(0.0)
             }, completion: nil)
-        UIView.animateWithDuration(1.5, delay: 0.5, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
+        UIView.animateWithDuration(1.2, delay: 0.5, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
             self.menuView.frame.size = CGSizeMake(self.menuView.frame.width, 0)
             }, completion: nil)
         clickNum = clickNum + 1
@@ -314,23 +335,23 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
     @IBAction func actMenuSelect(sender: AnyObject) {
 
         if(clickNum % 2 == 0) {
-            UIView.animateWithDuration(1.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
-                self.menuView.frame.size = CGSizeMake(self.menuView.frame.width, 180)
+            UIView.animateWithDuration(1.1, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
+                self.menuView.frame.size = CGSizeMake(self.menuView.frame.width, 190)
                 }, completion: nil)
-            UIView.animateWithDuration(1.5, delay: 0.5, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
+            UIView.animateWithDuration(1.1, delay: 0.5, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
                 self.festivalBtn.alpha = CGFloat(1.0)
                 self.artBtn.alpha = CGFloat(1.0)
                 self.musicalBtn.alpha = CGFloat(1.0)
                 self.musicBtn.alpha = CGFloat(1.0)
                 }, completion: nil)
         }else{
-            UIView.animateWithDuration(1.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
+            UIView.animateWithDuration(1.2, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
                 self.festivalBtn.alpha = CGFloat(0.0)
                 self.artBtn.alpha = CGFloat(0.0)
                 self.musicalBtn.alpha = CGFloat(0.0)
                 self.musicBtn.alpha = CGFloat(0.0)
                 }, completion: nil)
-            UIView.animateWithDuration(1.5, delay: 0.5, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
+            UIView.animateWithDuration(1.2, delay: 0.5, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
                 self.menuView.frame.size = CGSizeMake(self.menuView.frame.width, 0)
                 }, completion: nil)
             
@@ -359,7 +380,7 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         dataArray = _modelData.posts
         animateTable()
         UIView.animateWithDuration(1.0, delay: 0.02, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
-            self.selectImage.transform = CGAffineTransformMakeTranslation(125, 0);
+            self.selectImage.transform = CGAffineTransformMakeTranslation(self.moveSeletImageX, 0);
             }, completion: nil)
     }
     @IBAction func actThisMonthView() {
@@ -371,7 +392,7 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         dataArray = _modelData.posts
         animateTable()
         UIView.animateWithDuration(1.0, delay: 0.02, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
-            self.selectImage.transform = CGAffineTransformMakeTranslation(-125, 0);
+            self.selectImage.transform = CGAffineTransformMakeTranslation(-self.moveSeletImageX, 0);
             }, completion: nil)
     }
     func findTodayObjects(){

@@ -12,7 +12,7 @@ class IntroViewController: UIViewController {
     @IBOutlet weak var introImageView: UIImageView!
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.navigationBar.hidden = true
-        introImageView.image = UIImage(named: "intro.png")
+        introImageView.image = UIImage(named: "Intro.png")
         introImageView.frame.size = CGSizeMake(introImageView.frame.width*(view.frame.width)/375,introImageView.frame.height*(view.frame.height)/667)
     }
 }

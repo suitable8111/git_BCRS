@@ -114,14 +114,14 @@ typedef NS_ENUM(NSInteger, KOAuthType) {
 + (BOOL)isKakaoAccountLoginCallback:(NSURL *)url;
 
 /*!
- KakaoLink 메세지의 Action인지 여부
- @param url KakaoLink 메세지의 execparam 을 담은 url
+ KakaoLink 메시지의 Action인지 여부
+ @param url KakaoLink 메시지의 execparam 을 담은 url
  */
 + (BOOL)isKakaoLinkCallback:(NSURL *)url;
 
 /*!
  KakaoStory Post의 Action인지 여부
- @param url KakaoStory Post 메세지의 execparam 을 담은 url
+ @param url KakaoStory Post 메시지의 execparam 을 담은 url
  */
 + (BOOL)isStoryPostCallback:(NSURL *)url;
 
