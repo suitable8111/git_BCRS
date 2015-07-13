@@ -9,14 +9,16 @@
 import UIKit
 
 class WebPageController : UIViewController {
+    @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var naviBarImg: UIView!
     @IBOutlet weak var webView: UIWebView!
-    var url : String!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navigationController?.navigationBar.hidden = false
-        let requestURL = NSURL(string: url!)
+    var url : String = ""
+    override func viewWillAppear(animated: Bool) {
+        let requestURL = NSURL(string: url)
         let request = NSURLRequest(URL: requestURL!)
         webView.loadRequest(request)
+    }
+    @IBAction func actPrevious(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
     }
 }

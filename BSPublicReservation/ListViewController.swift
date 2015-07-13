@@ -12,11 +12,9 @@ import AVFoundation
 
 class ListViewController : UIViewController, UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate{
     
-    var arrFavorite:NSMutableArray!
-    
     //데이타 모델 클래스
     var _modelData:DataModel!
-    var _detailModelData:DetailDataModel!
+    //var _detailModelData:DetailDataModel!
     var indexNum : Int = 0
     var dataSid : String = ""
     var curruntState : String = "FESTIVAL"
@@ -32,7 +30,6 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
 //    애니메이션
    
    
-    //TABBar버튼들
     @IBOutlet weak var backGroundView: UIView!
     @IBOutlet weak var FavorBtn: UIButton!
     
@@ -61,29 +58,13 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         }
         return _modelData
     }
-    func detailModelData() -> DetailDataModel {
-        if(_detailModelData == nil){
-            _detailModelData = DetailDataModel()
-        }
-        return _detailModelData
-    }
-    override func viewWillAppear(animated: Bool) {     
+    override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.hidden = true
         animateTable()
     }
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        //myFavorite.plist 파일 가져오기
-        let path = getFileName("myFavorite.plist")
-        let fileManager = NSFileManager.defaultManager()
-        if(!fileManager.fileExistsAtPath(path)){
-            let orgPath = NSBundle.mainBundle().pathForResource("myFavorite", ofType: "plist")
-            fileManager.copyItemAtPath(orgPath!, toPath: path, error: nil)
-        }
-        
-        arrFavorite = NSMutableArray(contentsOfFile: path)
-        //checkDday()
         
         let frameForHeight : CGFloat = view.frame.size.height/667
         let frameForWidth : CGFloat = view.frame.size.width/375
@@ -105,6 +86,7 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         tbView.backgroundColor = UIColor.whiteColor()
     
         //contentSize//////////////////////////////////
+        if(frameForHeight != 1){
         thisMonthBtn.frame.origin = CGPoint(x: thisMonthBtn.frame.origin.x * frameForWidth, y: thisMonthBtn.frame.origin.y * frameForHeight)
         todayBtn.frame.origin = CGPoint(x: todayBtn.frame.origin.x * frameForWidth, y: todayBtn.frame.origin.y * frameForHeight)
         nextMonthBtn.frame.origin = CGPoint(x: nextMonthBtn.frame.origin.x * frameForWidth, y: nextMonthBtn.frame.origin.y * frameForHeight)
@@ -126,11 +108,10 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         thisMonthBtn.frame.size = CGSizeMake(thisMonthBtn.frame.size.width*frameForWidth,thisMonthBtn.frame.size.height*frameForHeight)
         nextMonthBtn.frame.size = CGSizeMake(nextMonthBtn.frame.size.width*frameForWidth,nextMonthBtn.frame.size.height*frameForHeight)
         todayBtn.frame.size = CGSizeMake(todayBtn.frame.size.width*frameForWidth,todayBtn.frame.size.height*frameForHeight)
+        }
         ////////////////////////////////////////////////
         
         self.modelData()
-        self.detailModelData()
-        
         
         formatter.dateFormat = "yyyyMM"
         let monthDate = formatter.stringFromDate(date)
@@ -160,12 +141,6 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
             
             index += 1
         }
-    }
-    func getFileName(fileName:String) -> String {
-        let docsDir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let docPath = docsDir[0] as! String
-        let fullName = docPath.stringByAppendingPathComponent(fileName)
-        return fullName
     }
     
     ///tableView method
@@ -202,8 +177,7 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         ///////////////////////////////////////////////
         
         
-        dataSid = (dataArray.objectAtIndex(indexPath.row).valueForKey("serialID") as? String)!
-        _detailModelData.beginParsing("FESTIVAL", dataSid: dataSid)
+
         
         if is_current == true{
             if CRDataArray.count == 0 {
@@ -226,10 +200,6 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         
         return cell!
     }
-//    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-//        searchBar.resignFirstResponder()
-//    }
-//    
     
     
     //정보전달 부분
@@ -248,7 +218,6 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
             DetailVC.startDate = dataArray.objectAtIndex(self.tbView.indexPathForSelectedRow()!.row).valueForKey("startDate") as! String
             DetailVC.endDate = dataArray.objectAtIndex(self.tbView.indexPathForSelectedRow()!.row).valueForKey("endDate") as! String
             }
-            DetailVC.placeName = _detailModelData.elements.valueForKey("place") as! String
             DetailVC.curruntState = curruntState
         }
         if(segue.identifier == "goFavor"){
@@ -271,10 +240,10 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
             }, completion: nil)
         clickNum = clickNum + 1
         menuBtn.setTitle("축제/행사", forState: UIControlState.Normal)
-        //menuBtn.setImage(UIImage(named: "fastival_Name_Bt.png"), forState: UIControlState.Normal)
         bgImage.image = UIImage(named: "Fastival_bg1.png")
         curruntState = "FESTIVAL"
         actTodayView()
+        indexNum = 0
 
     }
     @IBAction func actMusicSelect(sender: AnyObject) {
@@ -289,10 +258,10 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
             }, completion: nil)
         clickNum = clickNum + 1
         menuBtn.setTitle("음악/무용", forState: UIControlState.Normal)
-        //menuBtn.setImage(UIImage(named: "Music_Name_Bt.png"), forState: UIControlState.Normal)
         bgImage.image = UIImage(named: "Music_bg1.png")
         curruntState = "MUSICDANCE"
         actTodayView()
+        indexNum = 0
 
     }
     @IBAction func actMusicalSelect(sender: AnyObject) {
@@ -307,10 +276,10 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
             }, completion: nil)
         clickNum = clickNum + 1
         menuBtn.setTitle("뮤지컬/공연", forState: UIControlState.Normal)
-        //menuBtn.setImage(UIImage(named: "Musical_Name_Bt.png"), forState: UIControlState.Normal)
         bgImage.image = UIImage(named: "Musical_bg1.png")
         curruntState = "MUSICAL"
         actTodayView()
+        indexNum = 0
         
     }
     @IBAction func actArtSelect(sender: AnyObject) {
@@ -325,10 +294,10 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
             }, completion: nil)
         clickNum = clickNum + 1
         menuBtn.setTitle("전시/미술", forState: UIControlState.Normal)
-        //menuBtn.setImage(UIImage(named: "Art_Name_Bt.png"), forState: UIControlState.Normal)
         bgImage.image = UIImage(named: "Art_bg1.png")
         curruntState = "EXHIBIT"
         actTodayView()
+        indexNum = 0
     
     }
 
@@ -358,7 +327,30 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         }
         clickNum = clickNum + 1
     }
+    @IBAction func LeftMove(sender: AnyObject) {
+        if(indexNum == 0) {
+            actThisMonthView()
+        }else if(indexNum == 1){
+            actTodayView()
+        }else if(indexNum == -1){
+            indexNum = 2
+            actNextMonthView()
+        }
+        indexNum = indexNum - 1
+    }
+    @IBAction func RightMove(sender: AnyObject) {
+        if(indexNum == 0){
+            actNextMonthView()
+        }else if (indexNum == -1){
+            actTodayView()
+        }else if (indexNum == 1){
+            indexNum = -2
+            actThisMonthView()
+        }
+            indexNum = indexNum + 1
+    }
     @IBAction func actTodayView() {
+
         formatter.dateFormat = "yyyyMM"
         let monthDate = formatter.stringFromDate(date)
         var monthInt = monthDate.toInt()
@@ -432,19 +424,5 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
         //4
         return audioPlayer!
-    }
-    func checkDday() {
-        var indexNum : Int = 0
-        
-        for indexNum ; indexNum < arrFavorite.count ; indexNum++ {
-            var dDay : String = arrFavorite.objectAtIndex(indexNum).valueForKey("dDay") as! String
-            let dDayInt = dDay.toInt()
-            if(dDayInt < 3){
-                let aTitle = arrFavorite.objectAtIndex(indexNum).valueForKey("title") as! String
-                var alert = UIAlertView(title: "알림", message: aTitle+" "+dDay+" 일 남았습니다", delegate: self, cancelButtonTitle: "확인")
-                alert.show()
-                
-            }
-        }
     }
 }

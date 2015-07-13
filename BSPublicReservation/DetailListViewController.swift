@@ -17,17 +17,14 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate, UIScroll
     var startDate : String = ""
     var endDate : String = ""
     var serialID : String = ""
-    var placeName : String = ""
     var curruntState : String = ""
     var viewIndexNum : Int = 0
     var moveSeletImageX : CGFloat = 187.5
 
     //즐겨찾기 배열
     var arrFavorite:NSMutableArray!
-    var path:String = ""
     //맵 찾기
     var matchingItems: [MKMapItem] = [MKMapItem]()
-    //dDay계산
 
     
     @IBOutlet var titleLabel: UILabel!
@@ -80,7 +77,6 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate, UIScroll
         if(_detailModelData == nil){
             _detailModelData = DetailDataModel()
         }
-        
         return _detailModelData
     }
     
@@ -88,11 +84,6 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate, UIScroll
 
         let path = getFileName("myFavorite.plist")
         let fileManager = NSFileManager.defaultManager()
-        
-        let frameForHeight : CGFloat = view.frame.size.height/667
-        let frameForWidth : CGFloat = view.frame.size.width/375
-        
-
         if(!fileManager.fileExistsAtPath(path)){
             let orgPath = NSBundle.mainBundle().pathForResource("myFavorite", ofType: "plist")
             fileManager.copyItemAtPath(orgPath!, toPath: path, error: nil)
@@ -101,13 +92,14 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate, UIScroll
         
         self.detailModelData()
         self._detailModelData.beginParsing(curruntState, dataSid: serialID)
+        self.makeMapView()
         self.automaticallyAdjustsScrollViewInsets = false
         self.navigationController?.navigationBar.hidden = true
-        self.makeMapView()
-        
         self.scrollView.delegate = self
         
-        ///////////////contentSize//////////
+        ///////////////contentSize/////////////////////////////////////////////////////////////////////
+        let frameForHeight : CGFloat = view.frame.size.height/667
+        let frameForWidth : CGFloat = view.frame.size.width/375
         if(frameForHeight != 1){
             
         moveSeletImageX = moveSeletImageX * frameForWidth
@@ -186,65 +178,42 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate, UIScroll
             showFavorBtnLabel.frame.size = CGSizeMake( showFavorBtnLabel.frame.width * frameForWidth,  showFavorBtnLabel.frame.height * frameForHeight)
             favorBackGround.frame.size = CGSizeMake( favorBackGround.frame.width * frameForWidth,  favorBackGround.frame.height * frameForHeight)
         }
-        
         scrollView.contentSize =  CGSizeMake(view.frame.width*2, view.frame.height)
         scrollView.frame.size = CGSizeMake(view.frame.width,view.frame.height)
-        
-        ///////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////
 
-        titleLabel.text = _detailModelData.elements.valueForKey("title") as? String
+        titleLabel.text = titleName
+        startText.text = startDate
+        endText.text = endDate
+        gapLabel.text = "~"
         placeLabel.text = _detailModelData.elements.valueForKey("place") as? String
         phoneLabel.text = _detailModelData.elements.valueForKey("phoneNum") as? String
         homePageLabel.text = _detailModelData.elements.valueForKey("homePage") as? String
+        timeLabel.text = _detailModelData.elements.valueForKey("time") as? String
+        periodLabel.text = _detailModelData.elements.valueForKey("period") as? String
         
-        if(phoneLabel.text == ""){
-            phoneButton.hidden = true
-        }else{
-            phoneButton.hidden = false
-        }
-        if(homePageLabel.text == ""){
-            homePageButton.hidden = true
-        }else{
-            homePageButton.hidden = false
-        }
+
         if (curruntState == "FESTIVAL"){
-            timeLabel.text = "홈페이지를 참고해주세요!"
-            periodLabel.text = "무료!"
             bgImage2.image = UIImage(named: "Fastival_bg2.png")
             bgImage3.image = UIImage(named: "Fastival_bg3.png")
-        }else {
-            timeLabel.text = _detailModelData.elements.valueForKey("time") as? String
-            periodLabel.text = _detailModelData.elements.valueForKey("period") as? String
-            
-        }
-        
-        if (curruntState == "MUSICAL") {
+            timeLabel.text = "홈페이지을 참고해주세요!"
+            periodLabel.text = "무료!"
+        }else if (curruntState == "MUSICAL") {
             startText.text = _detailModelData.elements.valueForKey("time") as? String
             gapLabel.text = ""
             bgImage2.image = UIImage(named: "Musical_bg2.png")
             bgImage3.image = UIImage(named: "Musical_bg3.png")
-        }else {
-            startText.text = startDate
-        }
-        
-        if (curruntState == "MUSICDANCE"){
+        }else if (curruntState == "MUSICDANCE"){
             bgImage2.image = UIImage(named: "Music_bg2.png")
             bgImage3.image = UIImage(named: "Music_bg3.png")
-        }
-        if (curruntState == "EXHIBIT"){
+        }else if (curruntState == "EXHIBIT"){
             bgImage2.image = UIImage(named: "Art_bg2.png")
             bgImage3.image = UIImage(named: "Art_bg3.png")
         }
-        endText.text = endDate
         
         mapView.layer.cornerRadius = 5
         mapView.layer.masksToBounds = true
         
-        scrollView.addSubview(timeLabel)
-        scrollView.addSubview(periodLabel)
-        scrollView.addSubview(homePageLabel)
-        scrollView.addSubview(phoneLabel)
-        scrollView.addSubview(mapView)
         
     }
     func makeMapView() {
@@ -277,7 +246,7 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate, UIScroll
             matchingItems.removeAll()
             let request = MKLocalSearchRequest()
             var placeString : String = _detailModelData.elements.valueForKey("place") as! String
-            var resultString : String = "부산 " + placeString
+            var resultString : String = placeString
             request.naturalLanguageQuery = resultString
             request.region = mapView.region
         
@@ -334,31 +303,38 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate, UIScroll
     
     //즐겨찾기
     @IBAction func addFavor(sender: AnyObject) {
-        path = getFileName("myFavorite.plist")
-        let favorTitle : String = titleName
-        var favorPlace : String = ""
-        let favorEndDate : String = endDate
-        var favorStartDate : String = ""
-        let favorDataSid : String = serialID
-        let currentState : String = curruntState
-        
-        _detailModelData.beginParsing("MUSICAL", dataSid: favorDataSid)
-        //뮤지컬은 장소를 DetailDataModel에서 받아야한다
-        if curruntState == "MUSICAL" {
-            favorStartDate = _detailModelData.elements.valueForKey("time") as! String
+        var isEqual = false
+        if (arrFavorite.count == 0){
+            saveFavor()
         }else {
-            favorStartDate = startDate
+            for var num:Int = 0; num < arrFavorite.count; num = num + 1 {
+                if (arrFavorite.objectAtIndex(num).valueForKey("title") as! String == titleName){
+                    isEqual = true
+                }
+            }
+            if !isEqual {
+                saveFavor()
+            }else {
+                let alert = UIAlertView(title: "오류", message: "즐겨찾기에 추가된거에요", delegate: self, cancelButtonTitle: "확인")
+                alert.show()
+            }
         }
-        
-        favorPlace = _detailModelData.elements.valueForKey("place") as! String
-        let dicInfo:Dictionary<String, String> = ["title":favorTitle,"startDate": favorStartDate,"endDate": favorEndDate,"place":favorPlace,"serialID": favorDataSid, "currentState" : currentState]
-        
-        arrFavorite.addObject(dicInfo)
-        arrFavorite.writeToFile(path, atomically: true)
-        
-        var alert = UIAlertView(title: "즐겨찾기", message: "즐겨찾기에 추가 되었습니다!", delegate: self, cancelButtonTitle: "확인")
-        alert.show()
     }
+    func saveFavor(){
+            let path = getFileName("myFavorite.plist")
+            let favorTitle : String = titleName
+            let favorStartDate : String = startDate
+            let favorEndDate : String = endDate
+            let favorDataSid : String = serialID
+            let favorCurrentState : String = curruntState
+            
+            let dataDic : Dictionary<String, String> = ["title" : favorTitle, "serialID" : favorDataSid, "currentState" : favorCurrentState, "startDate" : favorStartDate, "endDate" : favorEndDate]
+            arrFavorite.addObject(dataDic)
+            arrFavorite.writeToFile(path, atomically: true)
+            let alert = UIAlertView(title: "즐겨찾기", message: "즐겨찾기에 추가 되었습니다!", delegate: self, cancelButtonTitle: "확인")
+            alert.show()
+    }
+
     func getFileName(fileName:String) -> String {
         let docsDir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         let docPath = docsDir[0] as! String
@@ -368,15 +344,19 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate, UIScroll
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "GoWeb"){
             var WebPageVC = segue.destinationViewController as! WebPageController
-            WebPageVC.url = _detailModelData.elements.valueForKey("homePage") as? String
+            WebPageVC.url = _detailModelData.elements.valueForKey("homePage") as! String
         }
     }
     //전화걸기
     @IBAction func PhoneCall() {
-        var alert = UIAlertView(title: "전화걸기", message: "전화 걸어 예약하시겠습니까?", delegate: self, cancelButtonTitle: "취소")
-        alert.addButtonWithTitle("전화걸기")
-        alert.show()
-        
+        if(placeLabel.text == ""){
+            var alert = UIAlertView(title: "", message: "전화번호가 없어요", delegate: self, cancelButtonTitle: "취소")
+            alert.show()
+        }else {
+            var alert = UIAlertView(title: "전화걸기", message: "전화 걸어 예약하시겠습니까?", delegate: self, cancelButtonTitle: "취소")
+            alert.addButtonWithTitle("전화걸기")
+            alert.show()
+        }
     }
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         let indexNum = buttonIndex
@@ -442,9 +422,7 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate, UIScroll
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }
-    @IBAction func actPrevious(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
-    }
+    
     
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
         scrollView.userInteractionEnabled = false
@@ -471,12 +449,12 @@ class DetailListViewController : UIViewController, UIAlertViewDelegate, UIScroll
             self.scrollView.contentOffset = CGPointMake(375, 0)
             }, completion: nil)
     }
-    
-    
+    @IBAction func actPrevious(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
     func replaceSpeciaChar(str:String) -> String {
         var str_change = NSMutableString(string: str)
         str_change.replaceOccurrencesOfString(".", withString: "-", options: NSStringCompareOptions.LiteralSearch, range: NSMakeRange(0, str_change.length))
-        
         return str_change as String
     }
 

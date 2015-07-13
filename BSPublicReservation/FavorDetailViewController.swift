@@ -11,11 +11,15 @@ import MapKit
 import Social
 
 class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollViewDelegate{
-    
+    var arrFavorite:NSMutableArray!
     var _detailModelData : DetailDataModel!
+    var titleName : String = ""
     var startDate : String = ""
     var endDate : String = ""
     var serialID : String = ""
+    var currentState : String = ""
+    var indexPathRow : Int = 0
+    
     var moveSeletImageX : CGFloat = 187.5
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -30,6 +34,7 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
     @IBOutlet weak var gapLabel: UILabel!
     
 
+    @IBOutlet weak var showCancelFavorLabel: UILabel!
     @IBOutlet weak var showHomePageBtnLabel: UILabel!
     @IBOutlet weak var showPhoneBtnLabel: UILabel!
     @IBOutlet weak var showPhoneLabel: UILabel!
@@ -38,6 +43,7 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
     @IBOutlet weak var showPeriodLabel: UILabel!
     @IBOutlet weak var goMapBtn: UIButton!
     @IBOutlet weak var goExplainBtn: UIButton!
+    @IBOutlet weak var cancelFavorBtn: UIButton!
     @IBOutlet weak var phoneBtn: UIButton!
     @IBOutlet weak var homePageBtn: UIButton!
     @IBOutlet weak var faceBookBtn: UIButton!
@@ -71,36 +77,43 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
     override func viewWillAppear(animated: Bool){
         
         self.detailDataModel()
-        _detailModelData.beginParsing("FESTIVAL", dataSid: serialID)
+        _detailModelData.beginParsing(currentState, dataSid: serialID)
         self.makeMapView()
+        self.scrollView.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false
         self.navigationController?.navigationBar.hidden = true
         
-        self.scrollView.delegate = self
+        let path = getFileName("myFavorite.plist")
+        let fileManager = NSFileManager.defaultManager()
+        if(!fileManager.fileExistsAtPath(path)){
+            let orgPath = NSBundle.mainBundle().pathForResource("myFavorite", ofType: "plist")
+            fileManager.copyItemAtPath(orgPath!, toPath: path, error: nil)
+        }
+        arrFavorite = NSMutableArray(contentsOfFile: path)
+        
         let frameForHeight : CGFloat = view.frame.size.height/667
         let frameForWidth : CGFloat = view.frame.size.width/375
         let originForX : CGFloat = view.center.x/187.5
         let originForY : CGFloat = view.center.y/333.5
         
-        titleLabel.text = _detailModelData.elements.valueForKey("title") as? String
-        placeLabel.text = _detailModelData.elements.valueForKey("place") as? String
-        phoneLabel.text = _detailModelData.elements.valueForKey("phoneNum") as? String
-        homePageLabel.text = _detailModelData.elements.valueForKey("homePage") as? String
-        timeLabel.text = _detailModelData.elements.valueForKey("time") as? String
-        periodLabel.text = _detailModelData.elements.valueForKey("period") as? String
+        titleLabel.text = titleName
         startLabel.text = startDate
         endLabel.text = endDate
+        placeLabel.text = _detailModelData.elements.valueForKey("place") as? String
+        timeLabel.text = _detailModelData.elements.valueForKey("time") as? String
+        phoneLabel.text = _detailModelData.elements.valueForKey("phoneNum") as? String
+        homePageLabel.text = _detailModelData.elements.valueForKey("homePage") as? String
+        periodLabel.text = _detailModelData.elements.valueForKey("period") as? String
         
-        if(phoneLabel.text == ""){
-            phoneBtn.hidden = true
-        }else{
-            phoneBtn.hidden = false
+        if(currentState == "MUSICAL"){
+            startLabel.text = _detailModelData.elements.valueForKey("time") as? String
+            gapLabel.text = ""
+            endLabel.text = ""
+        }else if(currentState == "FESTIVAL"){
+            periodLabel.text = "무료"
+            timeLabel.text = "홈페이지를 참고해주세요!"
         }
-        if(homePageLabel.text == ""){
-            homePageBtn.hidden = true
-        }else{
-            homePageBtn.hidden = false
-        }
+        
         if(frameForHeight != 1){
             
             moveSeletImageX = moveSeletImageX * frameForWidth
@@ -138,7 +151,10 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             favorBackGround.frame.origin = CGPoint(x: favorBackGround.frame.origin.x * frameForWidth, y: favorBackGround.frame.origin.y * frameForHeight)
             showHomePageBtnLabel.frame.origin = CGPoint(x: showHomePageBtnLabel.frame.origin.x * frameForWidth, y: showHomePageBtnLabel.frame.origin.y * frameForHeight)
             showPhoneBtnLabel.frame.origin = CGPoint(x: showPhoneBtnLabel.frame.origin.x * frameForWidth, y: showPhoneBtnLabel.frame.origin.y * frameForHeight)
-            
+            showCancelFavorLabel.frame.origin = CGPoint(x: showCancelFavorLabel.frame.origin.x * frameForWidth, y: showCancelFavorLabel.frame.origin.y * frameForHeight)
+            cancelFavorBtn.frame.origin = CGPoint(x: cancelFavorBtn.frame.origin.x * frameForWidth, y: cancelFavorBtn.frame.origin.y * frameForHeight)
+            kakaoBtn.frame.origin = CGPoint(x: kakaoBtn.frame.origin.x * frameForWidth, y: kakaoBtn.frame.origin.y * frameForHeight)
+
             titleLabel.frame.size = CGSizeMake(titleLabel.frame.width * frameForWidth,  titleLabel.frame.height * frameForHeight)
             placeLabel.frame.size = CGSizeMake( placeLabel.frame.width * frameForWidth,  placeLabel.frame.height * frameForHeight)
             phoneLabel.frame.size = CGSizeMake( phoneLabel.frame.width * frameForWidth,  phoneLabel.frame.height * frameForHeight)
@@ -173,26 +189,26 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             showHomePageBtnLabel.frame.size = CGSizeMake( showHomePageBtnLabel.frame.width * frameForWidth,  showHomePageBtnLabel.frame.height * frameForHeight)
             showPhoneBtnLabel.frame.size = CGSizeMake( showPhoneBtnLabel.frame.width * frameForWidth,  showPhoneBtnLabel.frame.height * frameForHeight)
             favorBackGround.frame.size = CGSizeMake( favorBackGround.frame.width * frameForWidth,  favorBackGround.frame.height * frameForHeight)
-            
+            showCancelFavorLabel.frame.size = CGSizeMake( showCancelFavorLabel.frame.width * frameForWidth,  showCancelFavorLabel.frame.height * frameForHeight)
+            cancelFavorBtn.frame.size = CGSizeMake( cancelFavorBtn.frame.width * frameForWidth,  cancelFavorBtn.frame.height * frameForHeight)
+            kakaoBtn.frame.size = CGSizeMake( kakaoBtn.frame.width * frameForWidth,  kakaoBtn.frame.height * frameForHeight)
         }
+        
+        
         scrollView.contentSize =  CGSizeMake(view.frame.width*2, view.frame.height)
         scrollView.frame.size = CGSizeMake(view.frame.width,view.frame.height)
-        
-        scrollView.addSubview(phoneLabel)
-        scrollView.addSubview(homePageLabel)
-        scrollView.addSubview(periodLabel)
-        scrollView.addSubview(timeLabel)
-        
-        scrollView.addSubview(titleLabel)
-        scrollView.addSubview(placeLabel)
-        scrollView.addSubview(startLabel)
-        scrollView.addSubview(endLabel)
-        scrollView.addSubview(gapLabel)
         
         mapView.layer.cornerRadius = 5
         mapView.layer.masksToBounds = true
         
     }
+    func getFileName(fileName:String) -> String {
+        let docsDir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        let docPath = docsDir[0] as! String
+        let fullName = docPath.stringByAppendingPathComponent(fileName)
+        return fullName
+    }
+
     func makeMapView() {
         
         var location = CLLocationCoordinate2D()
@@ -240,13 +256,18 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "GoWeb"){
             var WebPageVC = segue.destinationViewController as! WebPageController
-            WebPageVC.url = _detailModelData.elements.valueForKey("homePage") as? String
+            WebPageVC.url = _detailModelData.elements.valueForKey("homePage") as! String
         }
     }
     @IBAction func actPhoneCall(sender: AnyObject) {
-        var alert = UIAlertView(title: "전화걸기", message: "전화 거시겠습니까?", delegate: self, cancelButtonTitle: "취소")
-        alert.addButtonWithTitle("전화걸기")
-        alert.show()
+        if (phoneLabel.text == ""){
+            var alert = UIAlertView(title: "", message: "전화번호가 없어요", delegate: self, cancelButtonTitle: "취소")
+            alert.show()
+        }else {
+            var alert = UIAlertView(title: "전화걸기", message: "전화 거시겠습니까?", delegate: self, cancelButtonTitle: "취소")
+            alert.addButtonWithTitle("전화걸기")
+            alert.show()
+        }
     }
     @IBAction func actTwitter(sender: AnyObject) {
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
@@ -259,6 +280,13 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
+    }
+    @IBAction func actCancelFavor(sender: AnyObject){
+        arrFavorite.removeObjectAtIndex(indexPathRow)
+        let path = getFileName("myFavorite.plist")
+        arrFavorite.writeToFile(path, atomically: true)
+        var alert = UIAlertView(title: "즐겨찾기", message: "즐겨찾기 메뉴에 제거 되었습니다!", delegate: self, cancelButtonTitle: "확인")
+        alert.show()
     }
     @IBAction func actFaceBook(sender: AnyObject) {
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
@@ -306,8 +334,6 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
         
         let mainText = "\t\t[부산 문화 정보]\n제목 : "+titleLabel.text!+"\n장소 : "+placeLabel.text!+"\n날짜 : "+startLabel.text!+" ~ \n\t\t"+endLabel.text!+"\n 전화하기 : "+phoneLabel.text!
         let mainTextMusical = "\t\t[[부산 문화 정보]]\n제목 : "+titleLabel.text!+"\n장소 : "+placeLabel.text!+"\n날짜 : "+startLabel.text!+"\n 전화하기 : "+phoneLabel.text!
-        
-        
         let mainLabel = KakaoTalkLinkObject.createLabel(mainText)
         let mainLabelMusical = KakaoTalkLinkObject.createLabel(mainTextMusical)
         

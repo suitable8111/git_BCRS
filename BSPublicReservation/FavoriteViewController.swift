@@ -42,10 +42,11 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         tbView.dataSource = self
         tbView.delegate = self
         tbView.backgroundColor = UIColor.whiteColor()
-        
+        animateTable()
         
         self.navigationItem.rightBarButtonItem = editButtonItem();
         ///////////////contentSize//////////
+        if(frameForHeight != 1){
         editBtn.frame.origin = CGPoint(x: editBtn.frame.origin.x * frameForWidth, y: editBtn.frame.origin.y * frameForHeight)
         tbView.frame.origin = CGPoint(x: tbView.frame.origin.x * frameForWidth, y: tbView.frame.origin.y * frameForHeight)
         showFavorLabel.frame.origin = CGPoint(x: showFavorLabel.frame.origin.x * frameForWidth, y: showFavorLabel.frame.origin.y * frameForHeight)
@@ -60,8 +61,27 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         preBtn.frame.size = CGSizeMake(preBtn.frame.width * frameForWidth,  preBtn.frame.height * frameForHeight)
         naviBarView.frame.size = CGSizeMake(naviBarView.frame.width * frameForWidth,  naviBarView.frame.height * frameForHeight)
         favorMainBg.frame.size = CGSizeMake(favorMainBg.frame.width * frameForWidth,  favorMainBg.frame.height * frameForHeight)
-
+        }
         /////////////////////////////////////
+    }
+    func animateTable(){
+        tbView.reloadData()
+        let cells = tbView.visibleCells()
+        let tableHeight : CGFloat = tbView.bounds.size.height
+        
+        for i in cells {
+            let cell : UITableViewCell = i as! UITableViewCell
+            cell.transform = CGAffineTransformMakeTranslation(0, tableHeight)
+        }
+        var index = 0
+        for a in cells {
+            let cell: UITableViewCell = a as! UITableViewCell
+            UIView.animateWithDuration(1.0, delay: 0.02 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
+                cell.transform = CGAffineTransformMakeTranslation(0, 0);
+                }, completion: nil)
+            
+            index += 1
+        }
     }
     func getFileName(fileName:String) -> String {
         let docsDir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
@@ -138,9 +158,12 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "goFavorDetail"{
             var FavorDetailVC = segue.destinationViewController as! FavorDetailViewController
+            FavorDetailVC.titleName = arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow()!.row).valueForKey("title") as! String
             FavorDetailVC.serialID =  arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow()!.row).valueForKey("serialID") as! String
             FavorDetailVC.startDate =  arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow()!.row).valueForKey("startDate") as! String
             FavorDetailVC.endDate =  arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow()!.row).valueForKey("endDate") as! String
+            FavorDetailVC.currentState = arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow()!.row).valueForKey("currentState") as! String
+            FavorDetailVC.indexPathRow = self.tbView.indexPathForSelectedRow()!.row
         
         }
     }
