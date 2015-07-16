@@ -41,6 +41,7 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var musicBtn: UIButton!
     @IBOutlet weak var artBtn: UIButton!
     @IBOutlet weak var musicalBtn: UIButton!
+    @IBOutlet weak var triangleImg: UIImageView!
     
     @IBOutlet weak var bgImage: UIImageView!
     var is_current:Bool!
@@ -93,6 +94,7 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         selectImage.frame.origin = CGPoint(x: selectImage.frame.origin.x * frameForWidth, y: selectImage.frame.origin.y * frameForHeight)
         FavorBtn.frame.origin = CGPoint(x: FavorBtn.frame.origin.x * frameForWidth, y: FavorBtn.frame.origin.y * frameForHeight)
         tbView.frame.origin = CGPoint(x: tbView.frame.origin.x * frameForWidth, y: tbView.frame.origin.y * frameForHeight)
+        triangleImg.frame.origin = CGPoint(x: triangleImg.frame.origin.x * frameForWidth, y: triangleImg.frame.origin.y)
 
         
         tbView.frame.size = CGSizeMake(tbView.frame.size.width*frameForWidth,tbView.frame.size.height*frameForHeight)
@@ -108,6 +110,7 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         thisMonthBtn.frame.size = CGSizeMake(thisMonthBtn.frame.size.width*frameForWidth,thisMonthBtn.frame.size.height*frameForHeight)
         nextMonthBtn.frame.size = CGSizeMake(nextMonthBtn.frame.size.width*frameForWidth,nextMonthBtn.frame.size.height*frameForHeight)
         todayBtn.frame.size = CGSizeMake(todayBtn.frame.size.width*frameForWidth,todayBtn.frame.size.height*frameForHeight)
+        triangleImg.frame.size = CGSizeMake(triangleImg.frame.size.width*frameForWidth,triangleImg.frame.size.height*frameForHeight)
         }
         ////////////////////////////////////////////////
         

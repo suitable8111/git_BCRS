@@ -55,9 +55,20 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
     @IBOutlet weak var cellBackGround: UIImageView!
     @IBOutlet weak var favorBackGround: UIImageView!
     @IBOutlet weak var labelsBackGround: UIImageView!
-    @IBOutlet weak var btnsBackGround: UIImageView!
+    //@IBOutlet weak var btnsBackGround: UIImageView!
     @IBOutlet weak var flagImg: UIImageView!
     @IBOutlet weak var clockImg: UIImageView!
+    
+    @IBOutlet weak var shareBtn: UIButton!
+    @IBOutlet weak var shareBackBtn: UIButton!
+    @IBOutlet weak var shareView: UIView!
+    @IBOutlet weak var hiddenView: UIView!
+    
+    @IBOutlet weak var showKakaoTalkLabel: UILabel!
+    @IBOutlet weak var showFaceBookLabel: UILabel!
+    @IBOutlet weak var showShareLabel: UILabel!
+    
+    @IBOutlet weak var showTwitterLabel: UILabel!
     
     @IBOutlet weak var currentView: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
@@ -74,45 +85,19 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
         
         return _detailModelData
     }
-    override func viewWillAppear(animated: Bool){
-        
-        self.detailDataModel()
-        _detailModelData.beginParsing(currentState, dataSid: serialID)
-        self.makeMapView()
-        self.scrollView.delegate = self
-        self.automaticallyAdjustsScrollViewInsets = false
-        self.navigationController?.navigationBar.hidden = true
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
         let path = getFileName("myFavorite.plist")
+
         let fileManager = NSFileManager.defaultManager()
         if(!fileManager.fileExistsAtPath(path)){
             let orgPath = NSBundle.mainBundle().pathForResource("myFavorite", ofType: "plist")
             fileManager.copyItemAtPath(orgPath!, toPath: path, error: nil)
         }
         arrFavorite = NSMutableArray(contentsOfFile: path)
-        
+        self.scrollView.delegate = self
         let frameForHeight : CGFloat = view.frame.size.height/667
         let frameForWidth : CGFloat = view.frame.size.width/375
-        let originForX : CGFloat = view.center.x/187.5
-        let originForY : CGFloat = view.center.y/333.5
-        
-        titleLabel.text = titleName
-        startLabel.text = startDate
-        endLabel.text = endDate
-        placeLabel.text = _detailModelData.elements.valueForKey("place") as? String
-        timeLabel.text = _detailModelData.elements.valueForKey("time") as? String
-        phoneLabel.text = _detailModelData.elements.valueForKey("phoneNum") as? String
-        homePageLabel.text = _detailModelData.elements.valueForKey("homePage") as? String
-        periodLabel.text = _detailModelData.elements.valueForKey("period") as? String
-        
-        if(currentState == "MUSICAL"){
-            startLabel.text = _detailModelData.elements.valueForKey("time") as? String
-            gapLabel.text = ""
-            endLabel.text = ""
-        }else if(currentState == "FESTIVAL"){
-            periodLabel.text = "무료"
-            timeLabel.text = "홈페이지를 참고해주세요!"
-        }
         
         if(frameForHeight != 1){
             
@@ -136,7 +121,7 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             bgImage1.frame.origin = CGPoint(x: bgImage1.frame.origin.x * frameForWidth, y: bgImage1.frame.origin.y * frameForHeight)
             bgImage2.frame.origin = CGPoint(x: bgImage2.frame.origin.x * frameForWidth, y: bgImage2.frame.origin.y * frameForHeight)
             labelsBackGround.frame.origin = CGPoint(x: labelsBackGround.frame.origin.x * frameForWidth, y: labelsBackGround.frame.origin.y * frameForHeight)
-            btnsBackGround.frame.origin = CGPoint(x: btnsBackGround.frame.origin.x * frameForWidth, y: btnsBackGround.frame.origin.y * frameForHeight)
+      //      btnsBackGround.frame.origin = CGPoint(x: btnsBackGround.frame.origin.x * frameForWidth, y: btnsBackGround.frame.origin.y * frameForHeight)
             cellBackGround.frame.origin = CGPoint(x: cellBackGround.frame.origin.x * frameForWidth, y: cellBackGround.frame.origin.y * frameForHeight)
             flagImg.frame.origin = CGPoint(x: flagImg.frame.origin.x * frameForWidth, y: flagImg.frame.origin.y * frameForHeight)
             clockImg.frame.origin = CGPoint(x: clockImg.frame.origin.x * frameForWidth, y: clockImg.frame.origin.y * frameForHeight)
@@ -154,7 +139,17 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             showCancelFavorLabel.frame.origin = CGPoint(x: showCancelFavorLabel.frame.origin.x * frameForWidth, y: showCancelFavorLabel.frame.origin.y * frameForHeight)
             cancelFavorBtn.frame.origin = CGPoint(x: cancelFavorBtn.frame.origin.x * frameForWidth, y: cancelFavorBtn.frame.origin.y * frameForHeight)
             kakaoBtn.frame.origin = CGPoint(x: kakaoBtn.frame.origin.x * frameForWidth, y: kakaoBtn.frame.origin.y * frameForHeight)
-
+            shareBtn.frame.origin = CGPoint(x: shareBtn.frame.origin.x * frameForWidth, y: shareBtn.frame.origin.y * frameForHeight)
+            shareBackBtn.frame.origin = CGPoint(x: shareBackBtn.frame.origin.x * frameForWidth, y: shareBackBtn.frame.origin.y * frameForHeight)
+            shareView.frame.origin = CGPoint(x: shareView.frame.origin.x * frameForWidth, y: shareView.frame.origin.y * frameForHeight)
+            hiddenView.frame.origin = CGPoint(x: hiddenView.frame.origin.x * frameForWidth, y: hiddenView.frame.origin.y * frameForHeight)
+            
+            showKakaoTalkLabel.frame.origin = CGPoint(x: showKakaoTalkLabel.frame.origin.x * frameForWidth, y: showKakaoTalkLabel.frame.origin.y * frameForHeight)
+            showFaceBookLabel.frame.origin = CGPoint(x: showFaceBookLabel.frame.origin.x * frameForWidth, y: showFaceBookLabel.frame.origin.y * frameForHeight)
+            showShareLabel.frame.origin = CGPoint(x: showShareLabel.frame.origin.x * frameForWidth, y: showShareLabel.frame.origin.y * frameForHeight)
+            showTwitterLabel.frame.origin = CGPoint(x: showTwitterLabel.frame.origin.x * frameForWidth, y: showTwitterLabel.frame.origin.y * frameForHeight)
+            
+            
             titleLabel.frame.size = CGSizeMake(titleLabel.frame.width * frameForWidth,  titleLabel.frame.height * frameForHeight)
             placeLabel.frame.size = CGSizeMake( placeLabel.frame.width * frameForWidth,  placeLabel.frame.height * frameForHeight)
             phoneLabel.frame.size = CGSizeMake( phoneLabel.frame.width * frameForWidth,  phoneLabel.frame.height * frameForHeight)
@@ -174,7 +169,7 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             bgImage1.frame.size = CGSizeMake( bgImage1.frame.width * frameForWidth,  bgImage1.frame.height * frameForHeight)
             bgImage2.frame.size = CGSizeMake( bgImage2.frame.width * frameForWidth,  bgImage2.frame.height * frameForHeight)
             labelsBackGround.frame.size = CGSizeMake( labelsBackGround.frame.width * frameForWidth,  labelsBackGround.frame.height * frameForHeight)
-            btnsBackGround.frame.size = CGSizeMake( btnsBackGround.frame.width * frameForWidth,  btnsBackGround.frame.height * frameForHeight)
+         //   btnsBackGround.frame.size = CGSizeMake( btnsBackGround.frame.width * frameForWidth,  btnsBackGround.frame.height * frameForHeight)
             cellBackGround.frame.size = CGSizeMake( cellBackGround.frame.width * frameForWidth,  cellBackGround.frame.height * frameForHeight)
             flagImg.frame.size = CGSizeMake( flagImg.frame.width * frameForWidth,  flagImg.frame.height * frameForHeight)
             clockImg.frame.size = CGSizeMake( clockImg.frame.width * frameForWidth,  clockImg.frame.height * frameForHeight)
@@ -192,51 +187,55 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             showCancelFavorLabel.frame.size = CGSizeMake( showCancelFavorLabel.frame.width * frameForWidth,  showCancelFavorLabel.frame.height * frameForHeight)
             cancelFavorBtn.frame.size = CGSizeMake( cancelFavorBtn.frame.width * frameForWidth,  cancelFavorBtn.frame.height * frameForHeight)
             kakaoBtn.frame.size = CGSizeMake( kakaoBtn.frame.width * frameForWidth,  kakaoBtn.frame.height * frameForHeight)
+            shareBtn.frame.size = CGSizeMake( shareBtn.frame.width * frameForWidth,  shareBtn.frame.height * frameForHeight)
+            shareBackBtn.frame.size = CGSizeMake( shareBackBtn.frame.width * frameForWidth,  shareBackBtn.frame.height * frameForHeight)
+            shareView.frame.size = CGSizeMake( shareView.frame.width * frameForWidth,  shareView.frame.height * frameForHeight)
+            hiddenView.frame.size = CGSizeMake( hiddenView.frame.width * frameForWidth,  hiddenView.frame.height * frameForHeight)
+            
+            showKakaoTalkLabel.frame.size = CGSizeMake( showKakaoTalkLabel.frame.width * frameForWidth,  showKakaoTalkLabel.frame.height * frameForHeight)
+            showFaceBookLabel.frame.size = CGSizeMake( showFaceBookLabel.frame.width * frameForWidth,  showFaceBookLabel.frame.height * frameForHeight)
+            showShareLabel.frame.size = CGSizeMake( showShareLabel.frame.width * frameForWidth,  showShareLabel.frame.height * frameForHeight)
+            showTwitterLabel.frame.size = CGSizeMake( showTwitterLabel.frame.width * frameForWidth,  showTwitterLabel.frame.height * frameForHeight)
         }
-        
-        
         scrollView.contentSize =  CGSizeMake(view.frame.width*2, view.frame.height)
         scrollView.frame.size = CGSizeMake(view.frame.width,view.frame.height)
-        
+
         mapView.layer.cornerRadius = 5
         mapView.layer.masksToBounds = true
+        shareView.layer.cornerRadius = 5
+        shareView.layer.masksToBounds = true
         
     }
-    func getFileName(fileName:String) -> String {
-        let docsDir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let docPath = docsDir[0] as! String
-        let fullName = docPath.stringByAppendingPathComponent(fileName)
-        return fullName
-    }
+    override func viewWillAppear(animated: Bool){
+        
+        self.detailDataModel()
+        _detailModelData.beginParsing(currentState, dataSid: serialID)
 
-    func makeMapView() {
+        self.makeMapView()
+        self.automaticallyAdjustsScrollViewInsets = false
+        self.navigationController?.navigationBar.hidden = true
         
-        var location = CLLocationCoordinate2D()
+        titleLabel.text = titleName
+        startLabel.text = startDate
+        endLabel.text = endDate
+        placeLabel.text = _detailModelData.elements.valueForKey("place") as? String
+        timeLabel.text = _detailModelData.elements.valueForKey("time") as? String
+        phoneLabel.text = _detailModelData.elements.valueForKey("phoneNum") as? String
+        homePageLabel.text = _detailModelData.elements.valueForKey("homePage") as? String
+        periodLabel.text = _detailModelData.elements.valueForKey("period") as? String
         
-        var x = _detailModelData.elements.valueForKey("latitude") as? String
-        var y = _detailModelData.elements.valueForKey("longitude") as? String
+        if(currentState == "MUSICAL"){
+            startLabel.text = _detailModelData.elements.valueForKey("time") as? String
+            gapLabel.text = ""
+            endLabel.text = ""
+        }else if(currentState == "FESTIVAL"){
+            periodLabel.text = "무료"
+            timeLabel.text = "홈페이지를 참고해주세요!"
+        }
         
-        var xNSString = NSString(string: x!)
-        var xToDouble = xNSString.doubleValue
-        
-        var yNSString = NSString(string: y!)
-        var yToDouble = yNSString.doubleValue
-        
-        location.latitude = xToDouble
-        location.longitude = yToDouble
-        
-        let span = MKCoordinateSpanMake(0.01, 0.01)
-        let region = MKCoordinateRegion(center: location, span: span)
-        mapView.setRegion(region, animated: true)
-        
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = location
-        annotation.title = _detailModelData.elements.valueForKey("place") as? String
-        mapView.addAnnotation(annotation)
+
         
     }
-    
     @IBAction func actSelect(sender: AnyObject) {
         switch (selectedControl.selectedSegmentIndex){
         case 0 :
@@ -269,18 +268,7 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             alert.show()
         }
     }
-    @IBAction func actTwitter(sender: AnyObject) {
-        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
-            var twShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-            
-            self.presentViewController(twShare, animated: true, completion: nil)
-        } else {
-            var alert = UIAlertController(title: "Accounts", message: "Please login to a Twitter account to share.", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
-        }
-    }
+
     @IBAction func actCancelFavor(sender: AnyObject){
         arrFavorite.removeObjectAtIndex(indexPathRow)
         let path = getFileName("myFavorite.plist")
@@ -288,33 +276,8 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
         var alert = UIAlertView(title: "즐겨찾기", message: "즐겨찾기 메뉴에 제거 되었습니다!", delegate: self, cancelButtonTitle: "확인")
         alert.show()
     }
-    @IBAction func actFaceBook(sender: AnyObject) {
-        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
-            var fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-            
-            self.presentViewController(fbShare, animated: true, completion: nil)
-        } else {
-            var alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
-        }
-
-    }
     @IBAction func actPrevios(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
-    }
-    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
-        scrollView.userInteractionEnabled = false
-    }
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        var indexPage = scrollView.contentOffset.x / scrollView.frame.width
-        if(indexPage == 0){
-            actGoExplain()
-        }else{
-            actGoMap()
-        }
-        scrollView.userInteractionEnabled = true
     }
     @IBAction func actGoExplain() {
         UIView.animateWithDuration(0.5, delay: 0.00, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
@@ -326,10 +289,50 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
     @IBAction func actGoMap() {
         UIView.animateWithDuration(0.5, delay: 0.00, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
             self.currentView.transform = CGAffineTransformMakeTranslation(self.moveSeletImageX, 0);
-            self.scrollView.contentOffset = CGPointMake(375, 0)
+            self.scrollView.contentOffset = CGPointMake(375*self.view.frame.size.width/375, 0)
             }, completion: nil)
     }
-
+    
+    @IBAction func actFaceBook(sender: AnyObject) {
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
+            var fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            if(currentState != "MUSICAL"){
+                let mainText = "\t\t[부산 문화 정보]\n제목 : "+titleLabel.text!+"\n장소 : "+placeLabel.text!+"\n날짜 : "+startLabel.text!+" ~ \n\t\t"+endLabel.text!+"\n 전화하기 : "+phoneLabel.text!
+                fbShare.setInitialText(mainText)
+                
+            }else{
+                let mainTextMusical = "\t\t[[부산 문화 정보]]\n제목 : "+titleLabel.text!+"\n장소 : "+placeLabel.text!+"\n날짜 : "+startLabel.text!+"\n 전화하기 : "+phoneLabel.text!
+                fbShare.setInitialText(mainTextMusical)
+            }
+            
+            self.presentViewController(fbShare, animated: true, completion: nil)
+        } else {
+            var alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        
+    }
+    @IBAction func actTwitter(sender: AnyObject) {
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
+            var twShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            if(currentState != "MUSICAL"){
+                let mainText = "\t\t[부산 문화 정보]\n제목 : "+titleLabel.text!+"\n장소 : "+placeLabel.text!+"\n날짜 : "+startLabel.text!+" ~ \n\t\t"+endLabel.text!+"\n 전화하기 : "+phoneLabel.text!
+                twShare.setInitialText(mainText)
+            }else{
+                let mainTextMusical = "\t\t[[부산 문화 정보]]\n제목 : "+titleLabel.text!+"\n장소 : "+placeLabel.text!+"\n날짜 : "+startLabel.text!+"\n 전화하기 : "+phoneLabel.text!
+                twShare.setInitialText(mainTextMusical)
+            }
+            
+            self.presentViewController(twShare, animated: true, completion: nil)
+        } else {
+            var alert = UIAlertController(title: "Accounts", message: "Please login to a Twitter account to share.", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
     @IBAction func actKaKaoLink(sender: AnyObject) {
         
         let mainText = "\t\t[부산 문화 정보]\n제목 : "+titleLabel.text!+"\n장소 : "+placeLabel.text!+"\n날짜 : "+startLabel.text!+" ~ \n\t\t"+endLabel.text!+"\n 전화하기 : "+phoneLabel.text!
@@ -344,6 +347,77 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             println("cannot open kakaotalk.")
         }
         
+    }
+    
+    @IBAction func actShare(sender: AnyObject) {
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: nil, animations: {
+            self.hiddenView.alpha = CGFloat(0.5)
+            self.shareView.transform = CGAffineTransformMakeTranslation(0,-150*self.view.frame.height/667)
+            
+            }, completion: nil)
+    }
+    @IBAction func actShareBack(sender: AnyObject) {
+        UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: nil, animations: {
+            self.shareView.transform = CGAffineTransformMakeTranslation(0,0)
+            self.hiddenView.alpha = CGFloat(0)
+            }, completion: nil)
+    }
+    
+    func getFileName(fileName:String) -> String {
+        let docsDir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        let docPath = docsDir[0] as! String
+        let fullName = docPath.stringByAppendingPathComponent(fileName)
+        return fullName
+    }
+    func makeMapView() {
+        
+        var location = CLLocationCoordinate2D()
+        
+        var x = _detailModelData.elements.valueForKey("latitude") as? String
+        var y = _detailModelData.elements.valueForKey("longitude") as? String
+        
+        var xNSString = NSString(string: x!)
+        var xToDouble = xNSString.doubleValue
+        
+        var yNSString = NSString(string: y!)
+        var yToDouble = yNSString.doubleValue
+        
+        location.latitude = xToDouble
+        location.longitude = yToDouble
+        
+        let span = MKCoordinateSpanMake(0.01, 0.01)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(region, animated: true)
+        
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = _detailModelData.elements.valueForKey("place") as? String
+        mapView.addAnnotation(annotation)
+        
+    }
+    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        scrollView.userInteractionEnabled = false
+    }
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        var indexPage = scrollView.contentOffset.x / scrollView.frame.width
+        if(indexPage == 0){
+            UIView.animateWithDuration(0.5, delay: 0.00, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
+                self.currentView.transform = CGAffineTransformMakeTranslation(0, 0)
+                }, completion: nil)
+        }else{
+            UIView.animateWithDuration(0.5, delay: 0.00, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
+                self.currentView.transform = CGAffineTransformMakeTranslation(self.moveSeletImageX*indexPage, 0)
+                }, completion: nil)
+        }
+        scrollView.userInteractionEnabled = true
+    }
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        var indexPage = scrollView.contentOffset.x / scrollView.frame.width
+        var frame = scrollView.frame;
+        frame.origin.x = frame.size.width * indexPage;
+        frame.origin.y  = 0;
+        scrollView.scrollRectToVisible(frame, animated: true)
     }
 
 }
