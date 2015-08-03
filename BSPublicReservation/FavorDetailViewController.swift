@@ -51,7 +51,6 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
     @IBOutlet weak var kakaoBtn: UIButton!
     @IBOutlet weak var preBtn: UIButton!
     @IBOutlet weak var bgImage1: UIImageView!
-    @IBOutlet weak var bgImage2: UIImageView!
     @IBOutlet weak var cellBackGround: UIImageView!
     @IBOutlet weak var favorBackGround: UIImageView!
     @IBOutlet weak var labelsBackGround: UIImageView!
@@ -119,7 +118,6 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             twitterBtn.frame.origin = CGPoint(x: twitterBtn.frame.origin.x * frameForWidth, y: twitterBtn.frame.origin.y * frameForHeight)
             faceBookBtn.frame.origin = CGPoint(x: faceBookBtn.frame.origin.x * frameForWidth, y: faceBookBtn.frame.origin.y * frameForHeight)
             bgImage1.frame.origin = CGPoint(x: bgImage1.frame.origin.x * frameForWidth, y: bgImage1.frame.origin.y * frameForHeight)
-            bgImage2.frame.origin = CGPoint(x: bgImage2.frame.origin.x * frameForWidth, y: bgImage2.frame.origin.y * frameForHeight)
             labelsBackGround.frame.origin = CGPoint(x: labelsBackGround.frame.origin.x * frameForWidth, y: labelsBackGround.frame.origin.y * frameForHeight)
       //      btnsBackGround.frame.origin = CGPoint(x: btnsBackGround.frame.origin.x * frameForWidth, y: btnsBackGround.frame.origin.y * frameForHeight)
             cellBackGround.frame.origin = CGPoint(x: cellBackGround.frame.origin.x * frameForWidth, y: cellBackGround.frame.origin.y * frameForHeight)
@@ -167,7 +165,6 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             twitterBtn.frame.size = CGSizeMake( twitterBtn.frame.width * frameForWidth,  twitterBtn.frame.height * frameForHeight)
             faceBookBtn.frame.size = CGSizeMake( faceBookBtn.frame.width * frameForWidth,  faceBookBtn.frame.height * frameForHeight)
             bgImage1.frame.size = CGSizeMake( bgImage1.frame.width * frameForWidth,  bgImage1.frame.height * frameForHeight)
-            bgImage2.frame.size = CGSizeMake( bgImage2.frame.width * frameForWidth,  bgImage2.frame.height * frameForHeight)
             labelsBackGround.frame.size = CGSizeMake( labelsBackGround.frame.width * frameForWidth,  labelsBackGround.frame.height * frameForHeight)
          //   btnsBackGround.frame.size = CGSizeMake( btnsBackGround.frame.width * frameForWidth,  btnsBackGround.frame.height * frameForHeight)
             cellBackGround.frame.size = CGSizeMake( cellBackGround.frame.width * frameForWidth,  cellBackGround.frame.height * frameForHeight)
@@ -214,7 +211,7 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
         self.makeMapView()
         self.automaticallyAdjustsScrollViewInsets = false
         self.navigationController?.navigationBar.hidden = true
-        
+        bgImage1.image = UIImage(named: "Favor_main_bg.png")
         titleLabel.text = titleName
         startLabel.text = startDate
         endLabel.text = endDate
@@ -275,6 +272,7 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
         arrFavorite.writeToFile(path, atomically: true)
         var alert = UIAlertView(title: "즐겨찾기", message: "즐겨찾기 메뉴에 제거 되었습니다!", delegate: self, cancelButtonTitle: "확인")
         alert.show()
+        cancelFavorBtn.setImage(UIImage(named: "FavorBtn_Cancel.png"), forState: UIControlState.Normal)
     }
     @IBAction func actPrevios(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)

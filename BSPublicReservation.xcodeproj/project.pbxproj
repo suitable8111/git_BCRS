@@ -17,7 +17,6 @@
 		0335B7B41B4520E700D55EEC /* Cell_Clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B7B31B4520E700D55EEC /* Cell_Clock.png */; };
 		0335B7B81B45235200D55EEC /* Delete_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B7B71B45235200D55EEC /* Delete_Icon.png */; };
 		0335B7BA1B4524C700D55EEC /* Cell_Favor_Click.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B7B91B4524C700D55EEC /* Cell_Favor_Click.png */; };
-		0335B7C01B4528D200D55EEC /* Favor_main_bg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0335B7BF1B4528D200D55EEC /* Favor_main_bg.jpeg */; };
 		0335B7C21B452FE400D55EEC /* Favor_Heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B7C11B452FE400D55EEC /* Favor_Heart.png */; };
 		0335B7C41B4530EF00D55EEC /* phoneCall_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B7C31B4530EF00D55EEC /* phoneCall_icon.png */; };
 		0335B7C61B4530F400D55EEC /* HomePage_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335B7C51B4530F400D55EEC /* HomePage_icon.png */; };
@@ -55,6 +54,7 @@
 		03F1FE961B43D7B000DE48C6 /* Facebook_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F1FE951B43D7B000DE48C6 /* Facebook_icon.png */; };
 		03F1FE981B43D7D100DE48C6 /* Twitter_icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 03F1FE971B43D7D100DE48C6 /* Twitter_icon.jpg */; };
 		03FA8CCD1B47BE8B00706765 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03FA8CCC1B47BE8B00706765 /* KakaoOpenSDK.framework */; };
+		03FB0B1F1B6B7070005BB370 /* Favor_main_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 03FB0B1E1B6B7070005BB370 /* Favor_main_bg.png */; };
 		6A32A1EB1AEF47000066B953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A32A1EA1AEF47000066B953 /* AppDelegate.swift */; };
 		6A32A1F21AEF47000066B953 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A32A1F11AEF47000066B953 /* Images.xcassets */; };
 		6A32A1F51AEF47000066B953 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A32A1F31AEF47000066B953 /* LaunchScreen.xib */; };
@@ -87,7 +87,6 @@
 		0335B7B31B4520E700D55EEC /* Cell_Clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cell_Clock.png; sourceTree = "<group>"; };
 		0335B7B71B45235200D55EEC /* Delete_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete_Icon.png; sourceTree = "<group>"; };
 		0335B7B91B4524C700D55EEC /* Cell_Favor_Click.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cell_Favor_Click.png; sourceTree = "<group>"; };
-		0335B7BF1B4528D200D55EEC /* Favor_main_bg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Favor_main_bg.jpeg; sourceTree = "<group>"; };
 		0335B7C11B452FE400D55EEC /* Favor_Heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Favor_Heart.png; sourceTree = "<group>"; };
 		0335B7C31B4530EF00D55EEC /* phoneCall_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phoneCall_icon.png; sourceTree = "<group>"; };
 		0335B7C51B4530F400D55EEC /* HomePage_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomePage_icon.png; sourceTree = "<group>"; };
@@ -125,6 +124,7 @@
 		03F1FE951B43D7B000DE48C6 /* Facebook_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Facebook_icon.png; sourceTree = "<group>"; };
 		03F1FE971B43D7D100DE48C6 /* Twitter_icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Twitter_icon.jpg; sourceTree = "<group>"; };
 		03FA8CCC1B47BE8B00706765 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
+		03FB0B1E1B6B7070005BB370 /* Favor_main_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Favor_main_bg.png; sourceTree = "<group>"; };
 		6A32A1E51AEF47000066B953 /* BSPublicReservation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSPublicReservation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A32A1E91AEF47000066B953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A32A1EA1AEF47000066B953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -216,7 +216,7 @@
 				0335B7AB1B4518FB00D55EEC /* Musical_bg1.png */,
 				0335B7B91B4524C700D55EEC /* Cell_Favor_Click.png */,
 				0335B7B11B451A4C00D55EEC /* Select_Bar.png */,
-				0335B7BF1B4528D200D55EEC /* Favor_main_bg.jpeg */,
+				03FB0B1E1B6B7070005BB370 /* Favor_main_bg.png */,
 				03D102651B53940500E8534B /* KakaoLinkBtn.png */,
 				0335B7C11B452FE400D55EEC /* Favor_Heart.png */,
 				0335B7AC1B4518FB00D55EEC /* Musical_bg2.png */,
@@ -375,7 +375,6 @@
 				0335B7AF1B4518FB00D55EEC /* Musical_bg2.png in Resources */,
 				036DEA2F1B21E08E00445EB7 /* Musical_Name_Bt.png in Resources */,
 				0335B7C41B4530EF00D55EEC /* phoneCall_icon.png in Resources */,
-				0335B7C01B4528D200D55EEC /* Favor_main_bg.jpeg in Resources */,
 				036DEA351B21E38F00445EB7 /* Fastival_bg3.png in Resources */,
 				03AE1E601B0CC02300EE1111 /* HitB.wav in Resources */,
 				0335B7B21B451A4C00D55EEC /* Select_Bar.png in Resources */,
@@ -392,6 +391,7 @@
 				03D102661B53940500E8534B /* KakaoLinkBtn.png in Resources */,
 				03E96EE31B3ABEB300319059 /* Art_bg1.png in Resources */,
 				032C79231B00EDBC005A6A58 /* Cell_BackGround.png in Resources */,
+				03FB0B1F1B6B7070005BB370 /* Favor_main_bg.png in Resources */,
 				03F1FE941B43D16B00DE48C6 /* Cell_Triangle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

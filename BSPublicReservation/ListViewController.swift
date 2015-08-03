@@ -95,8 +95,8 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         FavorBtn.frame.origin = CGPoint(x: FavorBtn.frame.origin.x * frameForWidth, y: FavorBtn.frame.origin.y * frameForHeight)
         tbView.frame.origin = CGPoint(x: tbView.frame.origin.x * frameForWidth, y: tbView.frame.origin.y * frameForHeight)
         triangleImg.frame.origin = CGPoint(x: triangleImg.frame.origin.x * frameForWidth, y: triangleImg.frame.origin.y)
+            
 
-        
         tbView.frame.size = CGSizeMake(tbView.frame.size.width*frameForWidth,tbView.frame.size.height*frameForHeight)
         FavorBtn.frame.size = CGSizeMake(FavorBtn.frame.size.width*frameForWidth,FavorBtn.frame.size.height*frameForHeight)
         menuBtn.frame.size = CGSizeMake(menuBtn.frame.size.width*frameForWidth,menuBtn.frame.size.height*frameForHeight)
@@ -111,6 +111,7 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         nextMonthBtn.frame.size = CGSizeMake(nextMonthBtn.frame.size.width*frameForWidth,nextMonthBtn.frame.size.height*frameForHeight)
         todayBtn.frame.size = CGSizeMake(todayBtn.frame.size.width*frameForWidth,todayBtn.frame.size.height*frameForHeight)
         triangleImg.frame.size = CGSizeMake(triangleImg.frame.size.width*frameForWidth,triangleImg.frame.size.height*frameForHeight)
+        
         }
         ////////////////////////////////////////////////
         
