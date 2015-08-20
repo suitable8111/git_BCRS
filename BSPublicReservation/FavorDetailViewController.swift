@@ -9,10 +9,21 @@
 import UIKit
 import MapKit
 import Social
+import CoreLocation
 
-class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollViewDelegate{
+class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollViewDelegate, CLLocationManagerDelegate{
     var arrFavorite:NSMutableArray!
     var _detailModelData : DetailDataModel!
+    var fcstDataModel:FcstDataModel!
+    var weatherArray : NSMutableArray!
+    var ptyDic : Dictionary<String, String> = ["0" :"sunIcon.png","1" :"rainIcon.png","2" :"rainSnowIcon.png","3" :"snowIcon.png","4":"sunIcon.png"]
+    var skyDic : Dictionary<String, String> = ["1" : "맑음", "2" : "구름조금", "3" : "구름많음", "4" : "흐림"]
+    var timeDic : Dictionary<String, String> = ["0900" : "오전", "1500" : "오후", "2100" : "저녁"]
+    var dateDic : Dictionary<String, String> = ["0" : "오늘", "1" : "내일", "2" : "모래"]
+    
+    var ptyCount : Int = 0
+    var skyCount : Int = 1
+    var tmpCount : Int = 2
     var titleName : String = ""
     var startDate : String = ""
     var endDate : String = ""
@@ -20,7 +31,12 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
     var currentState : String = ""
     var indexPathRow : Int = 0
     
-    var moveSeletImageX : CGFloat = 187.5
+    var moveSeletImageX : CGFloat = 160
+    var locationManager : CLLocationManager!
+    
+    var date = NSDate()
+    var formatter = NSDateFormatter()
+    var yearDate = String()
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -71,11 +87,21 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
     
     @IBOutlet weak var currentView: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var selectedControl: UISegmentedControl!
-    
     @IBOutlet weak var naviBarView: UIView!
+    @IBOutlet weak var myLocationBtn: UIButton!
+    @IBOutlet weak var weatherNextBtn: UIButton!
+    @IBOutlet weak var weatherPreBtn: UIButton!
     
+    @IBOutlet weak var wImage1: UIImageView!
+    @IBOutlet weak var wImage2: UIImageView!
+    @IBOutlet weak var wImage3: UIImageView!
     
+    @IBOutlet weak var wTimeLabel1: UILabel!
+    @IBOutlet weak var wTimeLabel2: UILabel!
+    @IBOutlet weak var wTimeLabel3: UILabel!
+    @IBOutlet weak var wFcstLabel1: UILabel!
+    @IBOutlet weak var wFcstLabel2: UILabel!
+    @IBOutlet weak var wFcstLabel3: UILabel!
 
     func detailDataModel() -> DetailDataModel {
         if(_detailModelData == nil) {
@@ -84,10 +110,40 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
         
         return _detailModelData
     }
+    func fcstModelData() -> FcstDataModel {
+        if(fcstDataModel == nil){
+            fcstDataModel = FcstDataModel()
+        }
+        return fcstDataModel
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let path = getFileName("myFavorite.plist")
-
+        self.fcstModelData()
+        fcstDataModel.beginParsing()
+        if fcstDataModel.posts.count != 0 {
+            searchWeather()
+            
+            let date1 = formatter.dateFromString(yearDate)
+            let date2 = formatter.dateFromString((weatherArray[ptyCount].valueForKey("fcstDate") as? String)!)
+            let date3 = formatter.dateFromString((weatherArray[ptyCount+3].valueForKey("fcstDate") as? String)!)
+            let date4 = formatter.dateFromString((weatherArray[ptyCount+6].valueForKey("fcstDate") as? String)!)
+            let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+            let c1 = cal!.components(NSCalendarUnit.DayCalendarUnit, fromDate: date1!, toDate: date2!, options: NSCalendarOptions(0))
+            let c2 = cal!.components(NSCalendarUnit.DayCalendarUnit, fromDate: date1!, toDate: date3!, options: NSCalendarOptions(0))
+            let c3 = cal!.components(NSCalendarUnit.DayCalendarUnit, fromDate: date1!, toDate: date4!, options: NSCalendarOptions(0))
+            
+            wImage1.image = UIImage(named: ptyDic[(weatherArray[ptyCount].valueForKey("fcstValue") as! String)]!)
+            wImage2.image = UIImage(named: ptyDic[(weatherArray[ptyCount+3].valueForKey("fcstValue") as! String)]!)
+            wImage3.image = UIImage(named: ptyDic[(weatherArray[ptyCount+6].valueForKey("fcstValue") as! String)]!)
+            wFcstLabel1.text = skyDic[weatherArray[skyCount].valueForKey("fcstValue") as! String]! + ", " + (weatherArray[tmpCount].valueForKey("fcstValue") as! String) + "°C"
+            wFcstLabel2.text = skyDic[weatherArray[skyCount+3].valueForKey("fcstValue") as! String]! + ", " + (weatherArray[tmpCount+3].valueForKey("fcstValue") as! String) + "°C"
+            wFcstLabel3.text = skyDic[weatherArray[skyCount+6].valueForKey("fcstValue") as! String]! + ", " + (weatherArray[tmpCount+6].valueForKey("fcstValue") as! String) + "°C"
+            
+            wTimeLabel1.text = dateDic[String(c1.day)]! + ", " + timeDic[(weatherArray[ptyCount].valueForKey("fcstTime") as! String)]!
+            wTimeLabel2.text = dateDic[String(c2.day)]! + ", " + timeDic[(weatherArray[ptyCount+3].valueForKey("fcstTime") as! String)]!
+            wTimeLabel3.text = dateDic[String(c3.day)]! + ", " + timeDic[(weatherArray[ptyCount+6].valueForKey("fcstTime") as! String)]!
+        }
         let fileManager = NSFileManager.defaultManager()
         if(!fileManager.fileExistsAtPath(path)){
             let orgPath = NSBundle.mainBundle().pathForResource("myFavorite", ofType: "plist")
@@ -95,8 +151,8 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
         }
         arrFavorite = NSMutableArray(contentsOfFile: path)
         self.scrollView.delegate = self
-        let frameForHeight : CGFloat = view.frame.size.height/667
-        let frameForWidth : CGFloat = view.frame.size.width/375
+        let frameForHeight : CGFloat = view.frame.size.height/568
+        let frameForWidth : CGFloat = view.frame.size.width/320
         
         if(frameForHeight != 1){
             
@@ -119,14 +175,12 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             faceBookBtn.frame.origin = CGPoint(x: faceBookBtn.frame.origin.x * frameForWidth, y: faceBookBtn.frame.origin.y * frameForHeight)
             bgImage1.frame.origin = CGPoint(x: bgImage1.frame.origin.x * frameForWidth, y: bgImage1.frame.origin.y * frameForHeight)
             labelsBackGround.frame.origin = CGPoint(x: labelsBackGround.frame.origin.x * frameForWidth, y: labelsBackGround.frame.origin.y * frameForHeight)
-      //      btnsBackGround.frame.origin = CGPoint(x: btnsBackGround.frame.origin.x * frameForWidth, y: btnsBackGround.frame.origin.y * frameForHeight)
             cellBackGround.frame.origin = CGPoint(x: cellBackGround.frame.origin.x * frameForWidth, y: cellBackGround.frame.origin.y * frameForHeight)
             flagImg.frame.origin = CGPoint(x: flagImg.frame.origin.x * frameForWidth, y: flagImg.frame.origin.y * frameForHeight)
             clockImg.frame.origin = CGPoint(x: clockImg.frame.origin.x * frameForWidth, y: clockImg.frame.origin.y * frameForHeight)
             currentView.frame.origin = CGPoint(x: currentView.frame.origin.x * frameForWidth, y: currentView.frame.origin.y * frameForHeight)
             naviBarView.frame.origin = CGPoint(x: naviBarView.frame.origin.x * frameForWidth, y: naviBarView.frame.origin.y * frameForHeight)
             mapView.frame.origin = CGPoint(x: mapView.frame.origin.x * frameForWidth, y: mapView.frame.origin.y * frameForHeight)
-            selectedControl.frame.origin = CGPoint(x: selectedControl.frame.origin.x * frameForWidth, y: selectedControl.frame.origin.y * frameForHeight)
             showHomePageLabel.frame.origin = CGPoint(x: showHomePageLabel.frame.origin.x * frameForWidth, y: showHomePageLabel.frame.origin.y * frameForHeight)
             showPeriodLabel.frame.origin = CGPoint(x: showPeriodLabel.frame.origin.x * frameForWidth, y: showPeriodLabel.frame.origin.y * frameForHeight)
             showPhoneLabel.frame.origin = CGPoint(x: showPhoneLabel.frame.origin.x * frameForWidth, y: showPhoneLabel.frame.origin.y * frameForHeight)
@@ -146,6 +200,18 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             showFaceBookLabel.frame.origin = CGPoint(x: showFaceBookLabel.frame.origin.x * frameForWidth, y: showFaceBookLabel.frame.origin.y * frameForHeight)
             showShareLabel.frame.origin = CGPoint(x: showShareLabel.frame.origin.x * frameForWidth, y: showShareLabel.frame.origin.y * frameForHeight)
             showTwitterLabel.frame.origin = CGPoint(x: showTwitterLabel.frame.origin.x * frameForWidth, y: showTwitterLabel.frame.origin.y * frameForHeight)
+            myLocationBtn.frame.origin = CGPoint(x: myLocationBtn.frame.origin.x * frameForWidth, y: myLocationBtn.frame.origin.y * frameForHeight)
+            weatherNextBtn.frame.origin = CGPoint(x: weatherNextBtn.frame.origin.x * frameForWidth, y: weatherNextBtn.frame.origin.y * frameForHeight)
+            weatherPreBtn.frame.origin = CGPoint(x: weatherPreBtn.frame.origin.x * frameForWidth, y: weatherPreBtn.frame.origin.y * frameForHeight)
+            wImage1.frame.origin = CGPoint(x: wImage1.frame.origin.x * frameForWidth, y: wImage1.frame.origin.y * frameForHeight)
+            wImage2.frame.origin = CGPoint(x: wImage2.frame.origin.x * frameForWidth, y: wImage2.frame.origin.y * frameForHeight)
+            wImage3.frame.origin = CGPoint(x: showTwitterLabel.frame.origin.x * frameForWidth, y: wImage3.frame.origin.y * frameForHeight)
+            wTimeLabel1.frame.origin = CGPoint(x: wTimeLabel1.frame.origin.x * frameForWidth, y: wTimeLabel1.frame.origin.y * frameForHeight)
+            wTimeLabel2.frame.origin = CGPoint(x: wTimeLabel2.frame.origin.x * frameForWidth, y: wTimeLabel2.frame.origin.y * frameForHeight)
+            wTimeLabel3.frame.origin = CGPoint(x: wTimeLabel3.frame.origin.x * frameForWidth, y: wTimeLabel3.frame.origin.y * frameForHeight)
+            wFcstLabel1.frame.origin = CGPoint(x: wFcstLabel1.frame.origin.x * frameForWidth, y: wFcstLabel1.frame.origin.y * frameForHeight)
+            wFcstLabel2.frame.origin = CGPoint(x: wFcstLabel2.frame.origin.x * frameForWidth, y: wFcstLabel2.frame.origin.y * frameForHeight)
+            wFcstLabel3.frame.origin = CGPoint(x: wFcstLabel3.frame.origin.x * frameForWidth, y: wFcstLabel3.frame.origin.y * frameForHeight)
             
             
             titleLabel.frame.size = CGSizeMake(titleLabel.frame.width * frameForWidth,  titleLabel.frame.height * frameForHeight)
@@ -166,14 +232,12 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             faceBookBtn.frame.size = CGSizeMake( faceBookBtn.frame.width * frameForWidth,  faceBookBtn.frame.height * frameForHeight)
             bgImage1.frame.size = CGSizeMake( bgImage1.frame.width * frameForWidth,  bgImage1.frame.height * frameForHeight)
             labelsBackGround.frame.size = CGSizeMake( labelsBackGround.frame.width * frameForWidth,  labelsBackGround.frame.height * frameForHeight)
-         //   btnsBackGround.frame.size = CGSizeMake( btnsBackGround.frame.width * frameForWidth,  btnsBackGround.frame.height * frameForHeight)
             cellBackGround.frame.size = CGSizeMake( cellBackGround.frame.width * frameForWidth,  cellBackGround.frame.height * frameForHeight)
             flagImg.frame.size = CGSizeMake( flagImg.frame.width * frameForWidth,  flagImg.frame.height * frameForHeight)
             clockImg.frame.size = CGSizeMake( clockImg.frame.width * frameForWidth,  clockImg.frame.height * frameForHeight)
             currentView.frame.size = CGSizeMake( currentView.frame.width * frameForWidth,  currentView.frame.height * frameForHeight)
             naviBarView.frame.size = CGSizeMake( naviBarView.frame.width * frameForWidth,  naviBarView.frame.height * frameForHeight)
             mapView.frame.size = CGSizeMake( mapView.frame.width * frameForWidth,  mapView.frame.height * frameForHeight)
-            selectedControl.frame.size = CGSizeMake( selectedControl.frame.width * frameForWidth,  selectedControl.frame.height * frameForHeight)
             showHomePageLabel.frame.size = CGSizeMake( showHomePageLabel.frame.width * frameForWidth,  showHomePageLabel.frame.height * frameForHeight)
             showPeriodLabel.frame.size = CGSizeMake( showPeriodLabel.frame.width * frameForWidth,  showPeriodLabel.frame.height * frameForHeight)
             showPhoneLabel.frame.size = CGSizeMake( showPhoneLabel.frame.width * frameForWidth,  showPhoneLabel.frame.height * frameForHeight)
@@ -193,6 +257,18 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
             showFaceBookLabel.frame.size = CGSizeMake( showFaceBookLabel.frame.width * frameForWidth,  showFaceBookLabel.frame.height * frameForHeight)
             showShareLabel.frame.size = CGSizeMake( showShareLabel.frame.width * frameForWidth,  showShareLabel.frame.height * frameForHeight)
             showTwitterLabel.frame.size = CGSizeMake( showTwitterLabel.frame.width * frameForWidth,  showTwitterLabel.frame.height * frameForHeight)
+            weatherNextBtn.frame.size = CGSizeMake( weatherNextBtn.frame.width * frameForWidth,  weatherNextBtn.frame.height * frameForHeight)
+            weatherPreBtn.frame.size = CGSizeMake( weatherPreBtn.frame.width * frameForWidth,  weatherPreBtn.frame.height * frameForHeight)
+            wImage1.frame.size = CGSizeMake( wImage1.frame.width * frameForWidth,  wImage1.frame.height * frameForHeight)
+            wImage2.frame.size = CGSizeMake( wImage2.frame.width * frameForWidth,  wImage2.frame.height * frameForHeight)
+            wImage3.frame.size = CGSizeMake(wImage3.frame.width * frameForWidth,  wImage3.frame.height * frameForHeight)
+            wTimeLabel1.frame.size = CGSizeMake( wTimeLabel1.frame.width * frameForWidth,  wTimeLabel1.frame.height * frameForHeight)
+            wTimeLabel2.frame.size = CGSizeMake( wTimeLabel2.frame.width * frameForWidth,  wTimeLabel2.frame.height * frameForHeight)
+            wTimeLabel3.frame.size = CGSizeMake( wTimeLabel3.frame.width * frameForWidth,  wTimeLabel3.frame.height * frameForHeight)
+            wFcstLabel1.frame.size = CGSizeMake( wFcstLabel1.frame.width * frameForWidth,  wFcstLabel1.frame.height * frameForHeight)
+            wFcstLabel2.frame.size = CGSizeMake( wFcstLabel2.frame.width * frameForWidth,  wFcstLabel2.frame.height * frameForHeight)
+            wFcstLabel3.frame.size = CGSizeMake( wFcstLabel3.frame.width * frameForWidth,  wFcstLabel3.frame.height * frameForHeight)
+            myLocationBtn.frame.size = CGSizeMake( myLocationBtn.frame.width * frameForWidth,  myLocationBtn.frame.height * frameForHeight)
         }
         scrollView.contentSize =  CGSizeMake(view.frame.width*2, view.frame.height)
         scrollView.frame.size = CGSizeMake(view.frame.width,view.frame.height)
@@ -233,22 +309,6 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
 
         
     }
-    @IBAction func actSelect(sender: AnyObject) {
-        switch (selectedControl.selectedSegmentIndex){
-        case 0 :
-            mapView.mapType = MKMapType.Standard
-            break
-        case 1 :
-            mapView.mapType = MKMapType.Satellite
-            break
-        case 2 :
-            mapView.mapType = MKMapType.Hybrid
-            break
-        default :
-            
-            break
-        }
-    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "GoWeb"){
             var WebPageVC = segue.destinationViewController as! WebPageController
@@ -287,7 +347,7 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
     @IBAction func actGoMap() {
         UIView.animateWithDuration(0.5, delay: 0.00, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: nil, animations: {
             self.currentView.transform = CGAffineTransformMakeTranslation(self.moveSeletImageX, 0);
-            self.scrollView.contentOffset = CGPointMake(375*self.view.frame.size.width/375, 0)
+            self.scrollView.contentOffset = CGPointMake(320*self.view.frame.size.width/320, 0)
             }, completion: nil)
     }
     
@@ -339,18 +399,20 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
         let mainLabelMusical = KakaoTalkLinkObject.createLabel(mainTextMusical)
         
         if KOAppCall.canOpenKakaoTalkAppLink() {
+            if(currentState != "MUSICAL"){
                 KOAppCall.openKakaoTalkAppLink([mainLabel])
-            
+            }else{
+                KOAppCall.openKakaoTalkAppLink([mainLabelMusical])
+            }
         } else {
             println("cannot open kakaotalk.")
         }
-        
     }
     
     @IBAction func actShare(sender: AnyObject) {
         UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.5, options: nil, animations: {
             self.hiddenView.alpha = CGFloat(0.5)
-            self.shareView.transform = CGAffineTransformMakeTranslation(0,-150*self.view.frame.height/667)
+            self.shareView.transform = CGAffineTransformMakeTranslation(0,-125*self.view.frame.height/568)
             
             }, completion: nil)
     }
@@ -417,5 +479,126 @@ class FavorDetailViewController : UIViewController, MKMapViewDelegate, UIScrollV
         frame.origin.y  = 0;
         scrollView.scrollRectToVisible(frame, animated: true)
     }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        var location:CLLocation = locations[locations.count-1] as! CLLocation
+        var locationInMap = CLLocationCoordinate2D()
+        locationInMap.longitude = location.coordinate.longitude
+        locationInMap.latitude = location.coordinate.latitude
+        let span = MKCoordinateSpanMake(0.01, 0.01)
+        let region = MKCoordinateRegion(center: locationInMap, span: span)
+        mapView.setRegion(region, animated: true)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locationInMap
+        mapView.addAnnotation(annotation)
+    }
+    func searchWeather() {
+        formatter.dateFormat = "yyyyMMdd"
+        yearDate = formatter.stringFromDate(date)
+        var intYearDate = yearDate.toInt()
+        
+        weatherArray = NSMutableArray.alloc()
+        weatherArray = []
+        for var i = 0; i < fcstDataModel.posts.count; i++ {
+            if fcstDataModel.posts[i].valueForKey("fcstDate") as! String == String(stringInterpolationSegment: intYearDate!) && (fcstDataModel.posts[i].valueForKey("category") as! String == "T3H" || fcstDataModel.posts[i].valueForKey("category") as! String == "SKY" || fcstDataModel.posts[i].valueForKey("category") as! String == "PTY") {
+                if fcstDataModel.posts[i].valueForKey("fcstTime") as! String == "0900" {
+                    weatherArray.addObject(fcstDataModel.posts[i])
+                }
+                if fcstDataModel.posts[i].valueForKey("fcstTime") as! String == "1500" {
+                    weatherArray.addObject(fcstDataModel.posts[i])
+                }
+                if fcstDataModel.posts[i].valueForKey("fcstTime") as! String == "2100" {
+                    weatherArray.addObject(fcstDataModel.posts[i])
+                }
+            }
+            
+            if fcstDataModel.posts[i].valueForKey("fcstDate") as! String == String(stringInterpolationSegment: intYearDate!+1) && (fcstDataModel.posts[i].valueForKey("category") as! String == "T3H" || fcstDataModel.posts[i].valueForKey("category") as! String == "SKY" || fcstDataModel.posts[i].valueForKey("category") as! String == "PTY") {
+                if fcstDataModel.posts[i].valueForKey("fcstTime") as! String == "0900" {
+                    weatherArray.addObject(fcstDataModel.posts[i])
+                }
+                if fcstDataModel.posts[i].valueForKey("fcstTime") as! String == "1500" {
+                    weatherArray.addObject(fcstDataModel.posts[i])
+                }
+                if fcstDataModel.posts[i].valueForKey("fcstTime") as! String == "2100" {
+                    weatherArray.addObject(fcstDataModel.posts[i])
+                }
+            }
+            if fcstDataModel.posts[i].valueForKey("fcstDate") as! String == String(stringInterpolationSegment: intYearDate!+2) && (fcstDataModel.posts[i].valueForKey("category") as! String == "T3H" || fcstDataModel.posts[i].valueForKey("category") as! String == "SKY" || fcstDataModel.posts[i].valueForKey("category") as! String == "PTY"){
+                if fcstDataModel.posts[i].valueForKey("fcstTime") as! String == "0900" {
+                    weatherArray.addObject(fcstDataModel.posts[i])
+                }
+                if fcstDataModel.posts[i].valueForKey("fcstTime") as! String == "1500" {
+                    weatherArray.addObject(fcstDataModel.posts[i])
+                }
+                if fcstDataModel.posts[i].valueForKey("fcstTime") as! String == "2100" {
+                    weatherArray.addObject(fcstDataModel.posts[i])
+                }
+            }
+            
+        }
+    }
+    @IBAction func findMyLocation(sender: AnyObject) {
+        locationManager = CLLocationManager();
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+    }
 
+    @IBAction func actWeatherNext(sender: AnyObject) {
+        if (ptyCount+9 < weatherArray.count) && fcstDataModel.posts.count != 0 {
+            ptyCount = ptyCount + 3
+            skyCount = skyCount + 3
+            tmpCount = tmpCount + 3
+            println(ptyCount)
+            println(weatherArray.count)
+            
+            let date1 = formatter.dateFromString(yearDate)
+            let date2 = formatter.dateFromString((weatherArray[ptyCount].valueForKey("fcstDate") as? String)!)
+            let date3 = formatter.dateFromString((weatherArray[ptyCount+3].valueForKey("fcstDate") as? String)!)
+            let date4 = formatter.dateFromString((weatherArray[ptyCount+6].valueForKey("fcstDate") as? String)!)
+            let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+            let c1 = cal!.components(NSCalendarUnit.DayCalendarUnit, fromDate: date1!, toDate: date2!, options: NSCalendarOptions(0))
+            let c2 = cal!.components(NSCalendarUnit.DayCalendarUnit, fromDate: date1!, toDate: date3!, options: NSCalendarOptions(0))
+            let c3 = cal!.components(NSCalendarUnit.DayCalendarUnit, fromDate: date1!, toDate: date4!, options: NSCalendarOptions(0))
+            
+            wImage1.image = UIImage(named: ptyDic[(weatherArray[ptyCount].valueForKey("fcstValue") as! String)]!)
+            wImage2.image = UIImage(named: ptyDic[(weatherArray[ptyCount+3].valueForKey("fcstValue") as! String)]!)
+            wImage3.image = UIImage(named: ptyDic[(weatherArray[ptyCount+6].valueForKey("fcstValue") as! String)]!)
+            wFcstLabel1.text = skyDic[weatherArray[skyCount].valueForKey("fcstValue") as! String]! + ", " + (weatherArray[tmpCount].valueForKey("fcstValue") as! String) + "°C"
+            wFcstLabel2.text = skyDic[weatherArray[skyCount+3].valueForKey("fcstValue") as! String]! + ", " + (weatherArray[tmpCount+3].valueForKey("fcstValue") as! String) + "°C"
+            wFcstLabel3.text = skyDic[weatherArray[skyCount+6].valueForKey("fcstValue") as! String]! + ", " + (weatherArray[tmpCount+6].valueForKey("fcstValue") as! String) + "°C"
+            
+            wTimeLabel1.text = dateDic[String(c1.day)]! + ", " + timeDic[(weatherArray[ptyCount].valueForKey("fcstTime") as! String)]!
+            wTimeLabel2.text = dateDic[String(c2.day)]! + ", " + timeDic[(weatherArray[ptyCount+3].valueForKey("fcstTime") as! String)]!
+            wTimeLabel3.text = dateDic[String(c3.day)]! + ", " + timeDic[(weatherArray[ptyCount+6].valueForKey("fcstTime") as! String)]!
+        }
+    }
+    @IBAction func actWeatherPre(sender: AnyObject) {
+        if ptyCount != 0 && fcstDataModel.posts.count != 0 {
+            ptyCount = ptyCount - 3
+            skyCount = skyCount - 3
+            tmpCount = tmpCount - 3
+            
+            let date1 = formatter.dateFromString(yearDate)
+            let date2 = formatter.dateFromString((weatherArray[ptyCount].valueForKey("fcstDate") as? String)!)
+            let date3 = formatter.dateFromString((weatherArray[ptyCount+3].valueForKey("fcstDate") as? String)!)
+            let date4 = formatter.dateFromString((weatherArray[ptyCount+6].valueForKey("fcstDate") as? String)!)
+            let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+            let c1 = cal!.components(NSCalendarUnit.DayCalendarUnit, fromDate: date1!, toDate: date2!, options: NSCalendarOptions(0))
+            let c2 = cal!.components(NSCalendarUnit.DayCalendarUnit, fromDate: date1!, toDate: date3!, options: NSCalendarOptions(0))
+            let c3 = cal!.components(NSCalendarUnit.DayCalendarUnit, fromDate: date1!, toDate: date4!, options: NSCalendarOptions(0))
+            
+            wImage1.image = UIImage(named: ptyDic[(weatherArray[ptyCount].valueForKey("fcstValue") as! String)]!)
+            wImage2.image = UIImage(named: ptyDic[(weatherArray[ptyCount+3].valueForKey("fcstValue") as! String)]!)
+            wImage3.image = UIImage(named: ptyDic[(weatherArray[ptyCount+6].valueForKey("fcstValue") as! String)]!)
+            wFcstLabel1.text = skyDic[weatherArray[skyCount].valueForKey("fcstValue") as! String]! + ", " + (weatherArray[tmpCount].valueForKey("fcstValue") as! String) + "°C"
+            wFcstLabel2.text = skyDic[weatherArray[skyCount+3].valueForKey("fcstValue") as! String]! + ", " + (weatherArray[tmpCount+3].valueForKey("fcstValue") as! String) + "°C"
+            wFcstLabel3.text = skyDic[weatherArray[skyCount+6].valueForKey("fcstValue") as! String]! + ", " + (weatherArray[tmpCount+6].valueForKey("fcstValue") as! String) + "°C"
+            
+            wTimeLabel1.text = dateDic[String(c1.day)]! + ", " + timeDic[(weatherArray[ptyCount].valueForKey("fcstTime") as! String)]!
+            wTimeLabel2.text = dateDic[String(c2.day)]! + ", " + timeDic[(weatherArray[ptyCount+3].valueForKey("fcstTime") as! String)]!
+            wTimeLabel3.text = dateDic[String(c3.day)]! + ", " + timeDic[(weatherArray[ptyCount+6].valueForKey("fcstTime") as! String)]!
+        }
+    }
 }

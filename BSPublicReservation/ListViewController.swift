@@ -17,13 +17,13 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
     //var _detailModelData:DetailDataModel!
     var indexNum : Int = 0
     var dataSid : String = ""
-    var curruntState : String = "FESTIVAL"
+    var curruntState : String = "EXHIBIT"
     var searchActive : Bool = false
-    var backgroundMusic = AVAudioPlayer()
+    //var backgroundMusic = AVAudioPlayer()
     var date = NSDate()
     var formatter = NSDateFormatter()
     var clickNum : Int = 0
-    var moveSeletImageX : CGFloat = 125
+    var moveSeletImageX : CGFloat = 108
 //    Dynamic TableViewCell var
     var a : Int = 0
     var b : Int = 0
@@ -67,18 +67,19 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         
         super.viewDidLoad()
         
-        let frameForHeight : CGFloat = view.frame.size.height/667
-        let frameForWidth : CGFloat = view.frame.size.width/375
+        let frameForHeight : CGFloat = view.frame.size.height/568
+        let frameForWidth : CGFloat = view.frame.size.width/320
         
-        
+        println(view.frame.size.height)
+        println(view.frame.size.width )
         moveSeletImageX = moveSeletImageX * frameForWidth
-        backgroundMusic = self.setupAudioPlayerWithFile("HitB", type:"wav")
-        backgroundMusic.play()
+       // backgroundMusic = self.setupAudioPlayerWithFile("HitB", type:"wav")
+       // backgroundMusic.play()
         
         
         tbView.dataSource = self
         tbView.delegate = self
-        tbView.rowHeight = 70 * frameForHeight
+        tbView.rowHeight = 55 * frameForHeight
         festivalBtn.alpha = 0
         musicBtn.alpha = 0
         musicalBtn.alpha = 0
@@ -94,7 +95,8 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         selectImage.frame.origin = CGPoint(x: selectImage.frame.origin.x * frameForWidth, y: selectImage.frame.origin.y * frameForHeight)
         FavorBtn.frame.origin = CGPoint(x: FavorBtn.frame.origin.x * frameForWidth, y: FavorBtn.frame.origin.y * frameForHeight)
         tbView.frame.origin = CGPoint(x: tbView.frame.origin.x * frameForWidth, y: tbView.frame.origin.y * frameForHeight)
-        triangleImg.frame.origin = CGPoint(x: triangleImg.frame.origin.x * frameForWidth, y: triangleImg.frame.origin.y)
+        triangleImg.frame.origin = CGPoint(x: triangleImg.frame.origin.x * frameForWidth, y: triangleImg.frame.origin.y * frameForHeight)
+        menuView.frame.origin = CGPoint(x: menuView.frame.origin.x * frameForWidth, y: menuView.frame.origin.y * frameForHeight)
             
 
         tbView.frame.size = CGSizeMake(tbView.frame.size.width*frameForWidth,tbView.frame.size.height*frameForHeight)
@@ -174,8 +176,8 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         //contentSize//////////////////////////////////
         b = tbView.visibleCells().count + 1
         if a < b {
-            titleLabel.frame.size = CGSizeMake(titleLabel.frame.size.width*view.frame.size.width/375,titleLabel.frame.size.height*view.frame.size.height/667)
-            titleLabel.frame.origin = CGPoint(x: titleLabel.frame.origin.x * view.frame.width/375, y: titleLabel.frame.origin.y * view.frame.height/667)
+            titleLabel.frame.size = CGSizeMake(titleLabel.frame.size.width*view.frame.size.width/320,titleLabel.frame.size.height*view.frame.size.height/568)
+            titleLabel.frame.origin = CGPoint(x: titleLabel.frame.origin.x * view.frame.width/320, y: titleLabel.frame.origin.y * view.frame.height/568)
         a += 1
         }
         ///////////////////////////////////////////////
@@ -417,16 +419,16 @@ class ListViewController : UIViewController, UITableViewDataSource, UITableViewD
         
         return str_change as String
     }
-    func setupAudioPlayerWithFile(file:NSString, type:NSString) -> AVAudioPlayer  {
-        //1
-        var path = NSBundle.mainBundle().pathForResource(file as String, ofType: type as String)
-        var url = NSURL.fileURLWithPath(path!)
-        //2
-        var error: NSError?
-        //3
-        var audioPlayer:AVAudioPlayer?
-        audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
-        //4
-        return audioPlayer!
-    }
+//    func setupAudioPlayerWithFile(file:NSString, type:NSString) -> AVAudioPlayer  {
+//        //1
+//        var path = NSBundle.mainBundle().pathForResource(file as String, ofType: type as String)
+//        var url = NSURL.fileURLWithPath(path!)
+//        //2
+//        var error: NSError?
+//        //3
+//        var audioPlayer:AVAudioPlayer?
+//        audioPlayer = AVAudioPlayer(contentsOfURL: url, error: &error)
+//        //4
+//        return audioPlayer!
+//    }
 }

@@ -25,8 +25,10 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var favorMainBg: UIImageView!
     override func viewDidLoad() {
         ///////////////contentSize//////////
-        let frameForHeight : CGFloat = view.frame.size.height/667
-        let frameForWidth : CGFloat = view.frame.size.width/375
+        let frameForHeight : CGFloat = view.frame.size.height/568
+        let frameForWidth : CGFloat = view.frame.size.width/320
+        
+        tbView.rowHeight = 55 * frameForHeight;
         if(frameForHeight != 1){
             editBtn.frame.origin = CGPoint(x: editBtn.frame.origin.x * frameForWidth, y: editBtn.frame.origin.y * frameForHeight)
             tbView.frame.origin = CGPoint(x: tbView.frame.origin.x * frameForWidth, y: tbView.frame.origin.y * frameForHeight)
@@ -58,7 +60,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         
         formatter.dateFormat = "yyyy-MM-dd"
         
-        tbView.rowHeight = 70;
+
         tbView.dataSource = self
         tbView.delegate = self
         tbView.backgroundColor = UIColor.whiteColor()
@@ -107,9 +109,9 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         
         b = tbView.visibleCells().count + 1
         if a < b {
-            titleLabel.frame.size = CGSizeMake(titleLabel.frame.width*(view.frame.size.width)/375, titleLabel.frame.height*(view.frame.height)/667)
-            dDayLabel.frame.size = CGSizeMake(dDayLabel.frame.width*(view.frame.size.width)/375, dDayLabel.frame.height*(view.frame.height)/667)
-            dDayLabel.frame.origin = CGPoint(x: dDayLabel.frame.origin.x*(view.frame.size.width)/375, y: dDayLabel.frame.origin.y*(view.frame.height)/667)
+            titleLabel.frame.size = CGSizeMake(titleLabel.frame.width*(view.frame.size.width)/320, titleLabel.frame.height*(view.frame.height)/568)
+            dDayLabel.frame.size = CGSizeMake(dDayLabel.frame.width*(view.frame.size.width)/320, dDayLabel.frame.height*(view.frame.height)/568)
+            dDayLabel.frame.origin = CGPoint(x: dDayLabel.frame.origin.x*(view.frame.size.width)/320, y: dDayLabel.frame.origin.y*(view.frame.height)/568)
 
             a += 1
         }
