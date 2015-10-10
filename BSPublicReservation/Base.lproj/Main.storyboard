@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="WCt-tS-Bo6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="WCt-tS-Bo6">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--Favorite View Controller-->
@@ -32,15 +32,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="202" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수시 공연" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="og1-R7-oPu">
                                                     <rect key="frame" x="240" y="18" width="125" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pgs-W6-pOO">
                                                     <rect key="frame" x="20" y="18" width="212" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -123,119 +121,57 @@
                                         <rect key="frame" x="325" y="205" width="312" height="250"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </mapView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_BackGround.png" id="Uhb-2D-7sH">
-                                        <rect key="frame" x="5" y="205" width="312" height="90"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" lineBreakMode="tailTruncation" minimumFontSize="5" id="aw3-nY-vRB" userLabel="titleLabel">
+                                        <rect key="frame" x="21" y="207" width="280" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_BackGround.png" id="kX4-O8-HkZ">
-                                        <rect key="frame" x="5" y="475" width="312" height="79"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_BackGround.png" id="S2v-y8-ObW" userLabel="Label_BackGround.png">
-                                        <rect key="frame" x="5" y="300" width="312" height="170"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_Flog.png" id="KLD-0M-REV">
-                                        <rect key="frame" x="27" y="241" width="13" height="16"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_Clock.png" id="fYc-Hc-EPi">
-                                        <rect key="frame" x="26" y="265" width="17" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="aw3-nY-vRB" userLabel="titleLabel">
-                                        <rect key="frame" x="27" y="205" width="280" height="39"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.30980392159999998" green="0.46274509800000002" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="장소" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="676-V5-wd2" userLabel="placeLabel">
-                                        <rect key="frame" x="50" y="241" width="288" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
+                                        <color key="textColor" red="0.027450980392156862" green="0.16078431372549021" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작날짜" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LOw-pu-fl7" userLabel="startTime">
-                                        <rect key="frame" x="51" y="254" width="288" height="40"/>
+                                        <rect key="frame" x="25" y="285" width="132" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.49491003789999999" green="0.49491003789999999" blue="0.49491003789999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마지막날짜" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YAf-Pz-fuQ" userLabel="endTime">
-                                        <rect key="frame" x="174" y="263" width="133" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.49491003789999999" green="0.49491003789999999" blue="0.49491003789999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="105" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qx5-PH-fC1">
-                                        <rect key="frame" x="132" y="263" width="11" height="21"/>
+                                        <rect key="frame" x="112" y="285" width="11" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.49491003789999999" green="0.49491003789999999" blue="0.49491003789999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="홈페이지" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aAZ-Kk-RPG" userLabel="showHomePageLabel">
-                                        <rect key="frame" x="27" y="344" width="59" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마지막날짜" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YAf-Pz-fuQ" userLabel="endTime">
+                                        <rect key="frame" x="153" y="285" width="133" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.49491003789999999" green="0.49491003789999999" blue="0.49491003789999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHARGE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yIN-X1-cKK" userLabel="showPeriodLabel">
+                                        <rect key="frame" x="25" y="460" width="71" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="요      금" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yIN-X1-cKK" userLabel="showPeriodLabel">
-                                        <rect key="frame" x="27" y="425" width="41" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHONE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2up-gY-MkM" userLabel="showPhoneLabel">
+                                        <rect key="frame" x="25" y="399" width="59" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mSX-NX-ozK" userLabel="showTimeLabel">
+                                        <rect key="frame" x="25" y="261" width="62" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화번호" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2up-gY-MkM" userLabel="showPhoneLabel">
-                                        <rect key="frame" x="27" y="309" width="59" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시      간" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mSX-NX-ozK" userLabel="showTimeLabel">
-                                        <rect key="frame" x="27" y="386" width="41" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6dk-fs-jmb" userLabel="showPhoneCallLabel">
-                                        <rect key="frame" x="98" y="524" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="공유하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o3u-NE-dbx" userLabel="showShareLabel">
-                                        <rect key="frame" x="24" y="525" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="홈페이지" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CTj-FL-C9u" userLabel="showGoHomePageLabel">
-                                        <rect key="frame" x="178" y="524" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="즐겨찾기 취소" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0jH-rU-DWZ" userLabel="FavorCancel">
-                                        <rect key="frame" x="229" y="524" width="90" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="B9R-VV-hdj" userLabel="ShareBtn">
-                                        <rect key="frame" x="35" y="493" width="20" height="20"/>
+                                        <rect key="frame" x="0.0" y="520" width="159" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="ShareBtn.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -244,62 +180,18 @@
                                             <action selector="actShare:" destination="9PJ-Gm-LzJ" eventType="touchUpInside" id="Dd5-pT-nfa"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GdU-I9-YhB" userLabel="PhoneCallBtn">
-                                        <rect key="frame" x="109" y="495" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="phoneCall_icon.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="actPhoneCall:" destination="9PJ-Gm-LzJ" eventType="touchUpInside" id="dv6-ud-Ghi"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fYx-62-qpn" userLabel="HomePageBtn">
-                                        <rect key="frame" x="189" y="495" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="HomePage_icon.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="y3q-qn-nsD" kind="push" identifier="GoWeb" id="MUM-G0-BtS"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Fxe-Y2-Bc5" userLabel="FavorCancelBtn">
-                                        <rect key="frame" x="264" y="495" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="FavorBtn_Add.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="actCancelFavor:" destination="9PJ-Gm-LzJ" eventType="touchUpInside" id="74Z-m7-5zI"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="홈페이지" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0vC-DG-v0T" userLabel="HomePageLabel">
-                                        <rect key="frame" x="105" y="344" width="200" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="요금" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZvZ-7D-7Rc" userLabel="PhoneLabel">
-                                        <rect key="frame" x="105" y="413" width="200" height="54"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화번호" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nNN-GM-DBB" userLabel="CallLabel">
-                                        <rect key="frame" x="105" y="309" width="200" height="30"/>
+                                        <rect key="frame" x="25" y="424" width="200" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.41176470590000003" green="0.41176470590000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시간" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vL6-GK-tb1" userLabel="TimeLabel">
-                                        <rect key="frame" x="105" y="382" width="200" height="37"/>
+                                        <rect key="frame" x="25" y="298" width="267" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.41176470588235292" green="0.41176470588235292" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3Ct-ul-Jgo" userLabel="myLocationBtn">
@@ -388,15 +280,62 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="장  소" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" id="676-V5-wd2" userLabel="placeLabel">
+                                        <rect key="frame" x="25" y="366" width="276" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLACE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ROW-Kj-DaD" userLabel="showPlaceLabel">
+                                        <rect key="frame" x="25" y="337" width="62" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" id="hFu-RT-G9f" userLabel="line1.png">
+                                        <rect key="frame" x="0.0" y="335" width="320" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" id="aRf-rM-SY5" userLabel="line2.png">
+                                        <rect key="frame" x="0.0" y="395" width="320" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" id="Q7B-rQ-vS7" userLabel="line3.png">
+                                        <rect key="frame" x="0.0" y="455" width="320" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lineblue.png" id="AMh-jA-MQo">
+                                        <rect key="frame" x="0.0" y="251" width="320" height="8"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="요금" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZvZ-7D-7Rc" userLabel="PhoneLabel">
+                                        <rect key="frame" x="25" y="483" width="200" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.41176470590000003" green="0.41176470590000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rCo-7E-dlo" userLabel="ReservationBtn">
+                                        <rect key="frame" x="162" y="520" width="159" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button" image="ReserBtn.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actReservation:" destination="9PJ-Gm-LzJ" eventType="touchUpInside" id="sdd-5b-Oe5"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.87058823529999996" green="0.8862745098" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </scrollView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Select_Bar.png" id="kc5-yg-fiV" userLabel="CurrentView">
-                                <rect key="frame" x="0.0" y="183" width="160" height="10"/>
+                                <rect key="frame" x="0.0" y="193" width="160" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Favor_main_bg.png" id="gPp-k1-dTl">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="152"/>
+                                <rect key="frame" x="0.0" y="11" width="320" height="152"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="gvK-ix-J6c" userLabel="tabView">
@@ -404,26 +343,43 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="etV-nF-U5M">
-                                        <rect key="frame" x="8" y="16" width="34" height="30"/>
+                                        <rect key="frame" x="0.0" y="18" width="52" height="34"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="tintColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="&lt;">
-                                            <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.22745098039215686" green="0.35686274509803922" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="actPrevios:" destination="9PJ-Gm-LzJ" eventType="touchUpInside" id="X5g-2x-tOz"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Fxe-Y2-Bc5" userLabel="FavorCancelBtn">
+                                        <rect key="frame" x="287" y="31" width="16" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="FavorBtn_Add.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actCancelFavor:" destination="9PJ-Gm-LzJ" eventType="touchUpInside" id="74Z-m7-5zI"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카테고리" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zTb-fE-1N3" userLabel="CategoryLabel">
+                                        <rect key="frame" x="129" y="17" width="62" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="0.37808873250000002" green="0.38315852410000001" blue="0.40911063759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6dq-af-Q7h">
-                                <rect key="frame" x="0.0" y="152" width="160" height="31"/>
+                                <rect key="frame" x="0.0" y="162" width="160" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="backgroundColor" red="0.50588235294117645" green="0.61176470588235299" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                 <state key="normal" title="설명">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -433,10 +389,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wo4-t2-WM6">
-                                <rect key="frame" x="160" y="152" width="160" height="31"/>
+                                <rect key="frame" x="160" y="162" width="160" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="backgroundColor" red="0.30588235294117649" green="0.36078431372549019" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                 <state key="normal" title="지도">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -462,12 +418,53 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" id="02c-dA-EWk" userLabel="ReservationView">
+                                <rect key="frame" x="0.0" y="568" width="320" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6dk-fs-jmb" userLabel="showPhoneCallLabel">
+                                        <rect key="frame" x="62" y="89" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GdU-I9-YhB" userLabel="PhoneCallBtn">
+                                        <rect key="frame" x="68" y="46" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="phoneCall_icon.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actPhoneCall:" destination="9PJ-Gm-LzJ" eventType="touchUpInside" id="dv6-ud-Ghi"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fYx-62-qpn" userLabel="HomePageBtn">
+                                        <rect key="frame" x="210" y="46" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="HomePage_icon.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="y3q-qn-nsD" kind="push" identifier="GoWeb" id="MUM-G0-BtS"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="홈페이지" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CTj-FL-C9u" userLabel="showGoHomePageLabel">
+                                        <rect key="frame" x="204" y="89" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.792156862745098" green="0.80392156862745101" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <view contentMode="scaleToFill" id="jMn-jJ-nCG" userLabel="ShareView">
-                                <rect key="frame" x="15" y="568" width="290" height="100"/>
+                                <rect key="frame" x="0.0" y="568" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="K8G-gi-Pwi" userLabel="카카오링크">
-                                        <rect key="frame" x="232" y="23" width="35" height="35"/>
+                                        <rect key="frame" x="249" y="31" width="35" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="KakaoLinkIcon.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -477,7 +474,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Obi-Qe-ICi" userLabel="FaceBook">
-                                        <rect key="frame" x="128" y="23" width="35" height="35"/>
+                                        <rect key="frame" x="143" y="31" width="35" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="FaceBookIcon.png">
                                             <color key="titleColor" red="0.47286956429999999" green="0.67998184340000001" blue="0.84613715280000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -488,7 +485,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZGz-9U-Yv4" userLabel="Twitter">
-                                        <rect key="frame" x="27" y="23" width="35" height="35"/>
+                                        <rect key="frame" x="39" y="31" width="35" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="TwitterIcon.png">
                                             <color key="titleColor" red="0.47286956429999999" green="0.67998184340000001" blue="0.84613715280000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -498,29 +495,29 @@
                                             <action selector="actTwitter:" destination="9PJ-Gm-LzJ" eventType="touchUpInside" id="lTd-tb-wYm"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="트위터" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Mi-yx-EOi">
-                                        <rect key="frame" x="22" y="67" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="페이스북" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="25a-cO-8Vo">
-                                        <rect key="frame" x="123" y="67" width="42" height="21"/>
+                                        <rect key="frame" x="139" y="74" width="42" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카카오톡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mil-8a-q0C">
-                                        <rect key="frame" x="227" y="67" width="42" height="21"/>
+                                        <rect key="frame" x="245" y="74" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="트위터" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Mi-yx-EOi">
+                                        <rect key="frame" x="35" y="74" width="42" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.792156862745098" green="0.80392156862745101" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -530,21 +527,20 @@
                     <connections>
                         <outlet property="bgImage1" destination="gPp-k1-dTl" id="fiJ-5g-Juw"/>
                         <outlet property="cancelFavorBtn" destination="Fxe-Y2-Bc5" id="jCE-Uu-Hgd"/>
-                        <outlet property="cellBackGround" destination="Uhb-2D-7sH" id="Kzz-gj-abJ"/>
-                        <outlet property="clockImg" destination="fYc-Hc-EPi" id="CGh-4Z-F0l"/>
+                        <outlet property="categroyLabel" destination="zTb-fE-1N3" id="0Lk-lf-D3z"/>
                         <outlet property="currentView" destination="kc5-yg-fiV" id="4ai-3z-dUs"/>
                         <outlet property="endLabel" destination="YAf-Pz-fuQ" id="5kh-As-evh"/>
                         <outlet property="faceBookBtn" destination="Obi-Qe-ICi" id="9vC-Wd-UDx"/>
-                        <outlet property="favorBackGround" destination="kX4-O8-HkZ" id="jq6-RK-B2G"/>
-                        <outlet property="flagImg" destination="KLD-0M-REV" id="iDu-Ay-OQl"/>
                         <outlet property="gapLabel" destination="qx5-PH-fC1" id="bKa-Fj-Rlx"/>
                         <outlet property="goExplainBtn" destination="6dq-af-Q7h" id="00q-aj-4Fh"/>
                         <outlet property="goMapBtn" destination="wo4-t2-WM6" id="5t9-0O-Fcr"/>
                         <outlet property="hiddenView" destination="4MR-Ri-3pW" id="kXl-rT-Soj"/>
                         <outlet property="homePageBtn" destination="fYx-62-qpn" id="kGG-um-Xlw"/>
-                        <outlet property="homePageLabel" destination="0vC-DG-v0T" id="sdJ-iW-118"/>
                         <outlet property="kakaoBtn" destination="K8G-gi-Pwi" id="sN3-Pf-be5"/>
-                        <outlet property="labelsBackGround" destination="S2v-y8-ObW" id="gJF-aV-o6M"/>
+                        <outlet property="line1" destination="hFu-RT-G9f" id="hfI-zQ-kf5"/>
+                        <outlet property="line2" destination="aRf-rM-SY5" id="B6x-h8-8zy"/>
+                        <outlet property="line3" destination="Q7B-rQ-vS7" id="Lca-FR-BBv"/>
+                        <outlet property="lineBlue" destination="AMh-jA-MQo" id="8Tl-uL-5lQ"/>
                         <outlet property="mapView" destination="XAl-DZ-HQm" id="nCV-bG-TNd"/>
                         <outlet property="myLocationBtn" destination="3Ct-ul-Jgo" id="0Ay-lt-bst"/>
                         <outlet property="naviBarView" destination="gvK-ix-J6c" id="XmE-Et-TOF"/>
@@ -553,19 +549,19 @@
                         <outlet property="phoneLabel" destination="nNN-GM-DBB" id="dIt-Db-8XG"/>
                         <outlet property="placeLabel" destination="676-V5-wd2" id="Ga0-gU-sTc"/>
                         <outlet property="preBtn" destination="etV-nF-U5M" id="8D1-kq-Flj"/>
+                        <outlet property="reservationBtn" destination="rCo-7E-dlo" id="Mte-T6-go9"/>
+                        <outlet property="reservationView" destination="02c-dA-EWk" id="tH1-kl-56V"/>
                         <outlet property="scrollView" destination="tLd-fb-foK" id="0xX-eZ-rwe"/>
                         <outlet property="shareBackBtn" destination="H1R-Jn-Lu8" id="ae8-EU-1BW"/>
                         <outlet property="shareBtn" destination="B9R-VV-hdj" id="uUx-a4-5AW"/>
                         <outlet property="shareView" destination="jMn-jJ-nCG" id="pGc-BK-OdV"/>
-                        <outlet property="showCancelFavorLabel" destination="0jH-rU-DWZ" id="f0V-RI-4Uy"/>
                         <outlet property="showFaceBookLabel" destination="25a-cO-8Vo" id="pvL-L0-1VR"/>
                         <outlet property="showHomePageBtnLabel" destination="CTj-FL-C9u" id="vjg-zd-dsw"/>
-                        <outlet property="showHomePageLabel" destination="aAZ-Kk-RPG" id="nRy-E2-4km"/>
                         <outlet property="showKakaoTalkLabel" destination="Mil-8a-q0C" id="RF1-qT-Sq8"/>
                         <outlet property="showPeriodLabel" destination="yIN-X1-cKK" id="HEf-Xv-aHk"/>
                         <outlet property="showPhoneBtnLabel" destination="6dk-fs-jmb" id="t7z-fF-he2"/>
                         <outlet property="showPhoneLabel" destination="2up-gY-MkM" id="lfH-99-eYR"/>
-                        <outlet property="showShareLabel" destination="o3u-NE-dbx" id="qor-dC-TFg"/>
+                        <outlet property="showPlaceLabel" destination="ROW-Kj-DaD" id="N36-xn-xew"/>
                         <outlet property="showTimeLabel" destination="mSX-NX-ozK" id="qCE-lh-HII"/>
                         <outlet property="showTwitterLabel" destination="7Mi-yx-EOi" id="Sw7-Qo-fQB"/>
                         <outlet property="startLabel" destination="LOw-pu-fl7" id="qcR-ZQ-NuR"/>
@@ -587,7 +583,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0tr-EQ-PnA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2361" y="-439"/>
+            <point key="canvasLocation" x="1586" y="547"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -604,8 +600,8 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="XdK-s8-2oH">
                                         <rect key="frame" x="214" y="152" width="106" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                        <color key="backgroundColor" red="0.1803921568627451" green="0.2196078431372549" blue="0.29019607843137257" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                         <state key="normal" title="다음달">
                                             <color key="titleColor" white="1" alpha="0.91000000000000003" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -617,8 +613,8 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Nhe-Ue-uXG">
                                         <rect key="frame" x="106" y="152" width="108" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                        <color key="backgroundColor" red="0.35686274509803922" green="0.45490196078431372" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                         <state key="normal" title="오늘">
                                             <color key="titleColor" white="1" alpha="0.91000000000000003" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -630,8 +626,8 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="FII-OU-2B7">
                                         <rect key="frame" x="0.0" y="152" width="106" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                        <color key="backgroundColor" red="0.23921568627450981" green="0.28627450980392155" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                         <state key="normal" title="이번달">
                                             <color key="titleColor" white="1" alpha="0.91000000000000003" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -661,8 +657,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="gVL-QZ-Vcx">
                                                     <rect key="frame" x="23" y="8" width="289" height="39"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -675,7 +670,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="yCw-99-gxN" userLabel="메뉴버튼">
-                                <rect key="frame" x="18" y="30" width="284" height="36"/>
+                                <rect key="frame" x="18" y="30" width="284" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="전시/미술" backgroundImage="Cell_BackGround.png">
@@ -686,20 +681,16 @@
                                     <action selector="actMenuSelect:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="5xN-6a-khk"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_Triangle.png" id="mib-nj-Wmm">
-                                <rect key="frame" x="272" y="42" width="12" height="12"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Select_Bar.png" id="MUP-bZ-u4n">
+                                <rect key="frame" x="106" y="183" width="108" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Select_Bar.png" id="5gq-hc-Q9g" userLabel="SelectImage">
-                                <rect key="frame" x="106" y="183" width="108" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <view contentMode="scaleToFill" id="y7E-fm-ACZ" userLabel="MenuView">
-                                <rect key="frame" x="18" y="63" width="282" height="0.0"/>
+                                <rect key="frame" x="18" y="65" width="283" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="7xL-Ll-h94" userLabel="축제 메뉴">
-                                        <rect key="frame" x="0.0" y="47" width="282" height="48"/>
+                                        <rect key="frame" x="0.0" y="47" width="283" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="축제/행사">
@@ -711,7 +702,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="2cl-lQ-x5u" userLabel="음악 버튼">
-                                        <rect key="frame" x="0.0" y="141" width="282" height="48"/>
+                                        <rect key="frame" x="0.0" y="141" width="283" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="음악/무용">
@@ -723,7 +714,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="8dg-x2-AJZ" userLabel="뮤지컬 버튼">
-                                        <rect key="frame" x="0.0" y="0.0" width="282" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="283" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="뮤지컬/공연">
@@ -735,7 +726,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="W7W-ZN-MX2" userLabel="전시 버튼">
-                                        <rect key="frame" x="0.0" y="94" width="282" height="48"/>
+                                        <rect key="frame" x="0.0" y="94" width="283" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="전시/미술">
@@ -749,6 +740,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_Triangle.png" id="mib-nj-Wmm">
+                                <rect key="frame" x="269" y="44" width="12" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LtA-X0-l1p" userLabel="FavorBtn">
                                 <rect key="frame" x="247" y="491" width="57" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -780,7 +775,7 @@
                         <outlet property="musicBtn" destination="2cl-lQ-x5u" id="355-1K-DZd"/>
                         <outlet property="musicalBtn" destination="8dg-x2-AJZ" id="HIE-v7-MFe"/>
                         <outlet property="nextMonthBtn" destination="XdK-s8-2oH" id="5jY-x3-Guw"/>
-                        <outlet property="selectImage" destination="5gq-hc-Q9g" id="M6Y-Qf-rho"/>
+                        <outlet property="selectImage" destination="MUP-bZ-u4n" id="wr2-Rg-XdF"/>
                         <outlet property="tbView" destination="UjE-FS-otk" id="6rU-Ux-FqB"/>
                         <outlet property="thisMonthBtn" destination="FII-OU-2B7" id="bF9-wV-HSw"/>
                         <outlet property="todayBtn" destination="Nhe-Ue-uXG" id="cF0-Iw-5Pk"/>
@@ -814,200 +809,97 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="ps9-is-zP6">
-                                        <rect key="frame" x="325" y="205" width="312" height="250"/>
+                                        <rect key="frame" x="325" y="215" width="312" height="250"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </mapView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_BackGround.png" id="1H1-hj-Tai">
-                                        <rect key="frame" x="5" y="205" width="312" height="90"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_BackGround.png" id="LKe-fr-D88" userLabel="Label_BackGround.png">
-                                        <rect key="frame" x="5" y="300" width="312" height="170"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_BackGround.png" id="hGa-gi-tnY" userLabel="Favor_BackGround.png">
-                                        <rect key="frame" x="5" y="475" width="312" height="79"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_Flog.png" id="tX8-bU-PGy">
-                                        <rect key="frame" x="27" y="239" width="13" height="16"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell_Clock.png" id="v1r-x2-N2B">
-                                        <rect key="frame" x="27" y="263" width="17" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="b9m-Cy-v9w" userLabel="bgImage">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="152"/>
+                                        <rect key="frame" x="0.0" y="11" width="320" height="152"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ER9-8r-rPu" userLabel="bgImage">
-                                        <rect key="frame" x="320" y="4" width="320" height="152"/>
+                                        <rect key="frame" x="320" y="14" width="320" height="152"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="105" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CNq-hL-z0c" userLabel="GapLabel">
-                                        <rect key="frame" x="140" y="261" width="11" height="21"/>
+                                        <rect key="frame" x="110" y="283" width="11" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.49491003789999999" green="0.49491003789999999" blue="0.49491003789999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시작날짜" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sJk-Og-h2o" userLabel="StartDateLabel">
-                                        <rect key="frame" x="53" y="254" width="250" height="36"/>
+                                        <rect key="frame" x="25" y="283" width="132" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.49491003789999999" green="0.49491003789999999" blue="0.49491003789999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.470703125" green="0.470703125" blue="0.470703125" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마지막 날짜" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="etz-QD-1q6" userLabel="EndDateLabel">
-                                        <rect key="frame" x="175" y="261" width="132" height="21"/>
+                                        <rect key="frame" x="153" y="283" width="132" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.49491003789999999" green="0.49491003789999999" blue="0.49491003789999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.470703125" green="0.470703125" blue="0.470703125" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="장소" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="msm-jI-3xT" userLabel="PlaceLabel">
-                                        <rect key="frame" x="53" y="236" width="250" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="장 소" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" id="msm-jI-3xT" userLabel="PlaceLabel">
+                                        <rect key="frame" x="25" y="366" width="276" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.42834595959595956" green="0.42834595959595956" blue="0.42834595959595956" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="300" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="XaG-cB-VHY" userLabel="TitleLabel">
-                                        <rect key="frame" x="27" y="203" width="280" height="39"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="300" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="XaG-cB-VHY" userLabel="TitleLabel">
+                                        <rect key="frame" x="21" y="207" width="280" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.30980392159999998" green="0.46274509800000002" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
+                                        <color key="textColor" red="0.023529411764705882" green="0.25882352941176473" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시간" lineBreakMode="headTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ePd-Uj-iDy" userLabel="TimeLabel">
-                                        <rect key="frame" x="100" y="384" width="200" height="37"/>
+                                        <rect key="frame" x="25" y="298" width="267" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.470703125" green="0.470703125" blue="0.470703125" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화번호" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DOM-kA-3ET" userLabel="PhoneLabel">
-                                        <rect key="frame" x="100" y="313" width="200" height="30"/>
+                                        <rect key="frame" x="25" y="424" width="200" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="요금" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kbn-de-1Py" userLabel="PeriodLabel">
-                                        <rect key="frame" x="100" y="425" width="200" height="29"/>
+                                        <rect key="frame" x="25" y="483" width="200" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="홈페이지" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6cI-BZ-irK" userLabel="HomePageLabel">
-                                        <rect key="frame" x="100" y="349" width="200" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zYO-ot-aXl" userLabel="sTimeLabel">
+                                        <rect key="frame" x="25" y="261" width="62" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="0.3780887325298502" green="0.38315852412718976" blue="0.40911063762626265" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시      간" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zYO-ot-aXl" userLabel="sTimeLabel">
-                                        <rect key="frame" x="25" y="387" width="41" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHARGE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Mj-xR-koW" userLabel="sPeriodLabel">
+                                        <rect key="frame" x="25" y="460" width="71" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="0.3780887325298502" green="0.38315852412718976" blue="0.40911063762626265" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="요      금" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Mj-xR-koW" userLabel="sPeriodLabel">
-                                        <rect key="frame" x="25" y="425" width="41" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHONE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="y2V-xB-msJ" userLabel="sPhoneLabel">
+                                        <rect key="frame" x="24" y="399" width="59" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="0.3780887325298502" green="0.38315852412718976" blue="0.40911063762626265" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="홈페이지" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HaI-C8-YUr" userLabel="sHomePageLabel">
-                                        <rect key="frame" x="25" y="349" width="59" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화번호" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="y2V-xB-msJ" userLabel="sPhoneLabel">
-                                        <rect key="frame" x="25" y="313" width="59" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="홈페이지 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JUU-rt-CN1" userLabel="fsHomePageLabel">
-                                        <rect key="frame" x="170" y="525" width="59" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화걸기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nYs-je-ti3" userLabel="fsCallLabel">
-                                        <rect key="frame" x="94" y="525" width="59" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="공유하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PFJ-Bg-i4x" userLabel="fsShareLabel">
-                                        <rect key="frame" x="17" y="525" width="59" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="즐겨찾기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MjW-uc-WHl" userLabel="fsFavorLabel">
-                                        <rect key="frame" x="245" y="525" width="59" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rvr-Hd-hnj" userLabel="FavorBtn">
-                                        <rect key="frame" x="263" y="497" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="FavorBtn_Cancel.png">
-                                            <color key="titleColor" red="0.4728695643478863" green="0.67998184335190748" blue="0.84613715277777779" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addFavor:" destination="hKf-qs-yKg" eventType="touchUpInside" id="HnK-j9-cYc"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jbz-24-qMh" userLabel="CallBtn">
-                                        <rect key="frame" x="112" y="497" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="phoneCall_icon.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="PhoneCall" destination="hKf-qs-yKg" eventType="touchUpInside" id="1Ch-vc-BRp"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="51m-Hw-dRJ" userLabel="ShareBtn">
-                                        <rect key="frame" x="38" y="497" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="ShareBtn.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="actShare:" destination="hKf-qs-yKg" eventType="touchUpInside" id="w4g-or-tr7"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0CK-3e-wvj" userLabel="HomePageBtn">
-                                        <rect key="frame" x="188" y="497" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="HomePage_icon.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="y3q-qn-nsD" kind="push" identifier="GoWeb" id="1u3-fa-QJY"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7iW-Bp-F0V" userLabel="myLocationBtn">
-                                        <rect key="frame" x="350" y="220" width="20" height="30"/>
+                                        <rect key="frame" x="350" y="230" width="20" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="LocationIcon.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1017,7 +909,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="rII-xa-4Fh" userLabel="wNextBtn">
-                                        <rect key="frame" x="597" y="491" width="30" height="30"/>
+                                        <rect key="frame" x="597" y="501" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <state key="normal" title="&gt;&gt;">
@@ -1028,61 +920,61 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="GiV-Yh-6FM" userLabel="wImage1">
-                                        <rect key="frame" x="378" y="491" width="32" height="32"/>
+                                        <rect key="frame" x="378" y="501" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="359-rE-vpw" userLabel="wImage2">
-                                        <rect key="frame" x="464" y="491" width="32" height="32"/>
+                                        <rect key="frame" x="464" y="501" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="4yV-gh-dIW" userLabel="wImage3">
-                                        <rect key="frame" x="555" y="491" width="32" height="32"/>
+                                        <rect key="frame" x="555" y="501" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오전" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XIp-mC-iUN" userLabel="wTimeLabel1">
-                                        <rect key="frame" x="364" y="525" width="60" height="21"/>
+                                        <rect key="frame" x="364" y="535" width="60" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kie-xP-Q9s" userLabel="wTimeLabel2">
-                                        <rect key="frame" x="450" y="525" width="60" height="21"/>
+                                        <rect key="frame" x="450" y="535" width="60" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="저녁" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qqB-js-iht" userLabel="wTimeLabel3">
-                                        <rect key="frame" x="541" y="525" width="60" height="21"/>
+                                        <rect key="frame" x="541" y="535" width="60" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날씨, 온도" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rsd-9p-p4O" userLabel="wFcstLabel1">
-                                        <rect key="frame" x="357" y="462" width="75" height="21"/>
+                                        <rect key="frame" x="357" y="472" width="75" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날씨, 온도" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7gu-g7-5DK" userLabel="wFcstLabel2">
-                                        <rect key="frame" x="443" y="462" width="75" height="21"/>
+                                        <rect key="frame" x="443" y="472" width="75" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날씨, 온도" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4F0-uj-pif" userLabel="wFcstLabel3">
-                                        <rect key="frame" x="532" y="462" width="75" height="21"/>
+                                        <rect key="frame" x="532" y="472" width="75" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="aje-9K-isL" userLabel="wPreBtn">
-                                        <rect key="frame" x="336" y="491" width="30" height="30"/>
+                                        <rect key="frame" x="336" y="501" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <state key="normal" title="&lt;&lt;">
@@ -1092,20 +984,81 @@
                                             <action selector="actWeatherPreBtn:" destination="hKf-qs-yKg" eventType="touchUpInside" id="hee-Lw-pHv"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLACE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Okd-ay-16V" userLabel="sPlaceLabel">
+                                        <rect key="frame" x="25" y="337" width="62" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="0.3780887325298502" green="0.38315852412718976" blue="0.40911063762626265" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" id="0t7-vh-fNQ" userLabel="line1.png">
+                                        <rect key="frame" x="0.0" y="335" width="320" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" id="wFq-pW-ChL" userLabel="line2.png">
+                                        <rect key="frame" x="0.0" y="395" width="320" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" id="oaH-Wo-2E3" userLabel="line3.png">
+                                        <rect key="frame" x="0.0" y="455" width="320" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lineblue.png" id="EkF-4A-g28">
+                                        <rect key="frame" x="0.0" y="251" width="320" height="8"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0rF-OL-P0F" userLabel="ReservationBtn">
+                                        <rect key="frame" x="162" y="520" width="159" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="ReserBtn.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actReservation:" destination="hKf-qs-yKg" eventType="touchUpInside" id="kdw-BF-XnX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="51m-Hw-dRJ" userLabel="ShareBtn">
+                                        <rect key="frame" x="0.0" y="520" width="159" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="ShareBtn.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actShare:" destination="hKf-qs-yKg" eventType="touchUpInside" id="w4g-or-tr7"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.87058823529411766" green="0.88627450980392153" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </scrollView>
                             <view contentMode="scaleToFill" id="5Jb-WT-i39" userLabel="NaviView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카테고리" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gxm-Cr-Ick" userLabel="CategoryLabel">
+                                        <rect key="frame" x="129" y="17" width="62" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="0.37808873250000002" green="0.38315852410000001" blue="0.40911063759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rvr-Hd-hnj" userLabel="FavorBtn">
+                                        <rect key="frame" x="287" y="31" width="16" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="FavorBtn_Cancel.png">
+                                            <color key="titleColor" red="0.4728695643478863" green="0.67998184335190748" blue="0.84613715277777779" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addFavor:" destination="hKf-qs-yKg" eventType="touchUpInside" id="HnK-j9-cYc"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PqI-9l-Bb5">
-                                        <rect key="frame" x="6" y="19" width="34" height="30"/>
+                                        <rect key="frame" x="0.0" y="18" width="52" height="34"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="tintColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="&lt;">
-                                            <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="&lt; ">
+                                            <color key="titleColor" red="0.036789858871788476" green="0.26042338375453111" blue="0.63210227272727271" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -1116,10 +1069,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DuN-pX-ocX" userLabel="ExplainBtn">
-                                <rect key="frame" x="0.0" y="152" width="160" height="31"/>
+                                <rect key="frame" x="0.0" y="162" width="160" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="backgroundColor" red="0.57557533593133225" green="0.67960605280067765" blue="0.83737768308080807" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                 <state key="normal" title="설명">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1129,10 +1082,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Soa-B1-8ia" userLabel="MapBtn">
-                                <rect key="frame" x="160" y="152" width="160" height="31"/>
+                                <rect key="frame" x="160" y="162" width="160" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="backgroundColor" red="0.38247485405637949" green="0.44478001983548388" blue="0.52150410353535359" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                 <state key="normal" title="지도">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1142,7 +1095,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Select_Bar.png" id="baG-VT-SGh" userLabel="Current View">
-                                <rect key="frame" x="0.0" y="183" width="160" height="10"/>
+                                <rect key="frame" x="0.0" y="193" width="160" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view alpha="0.0" contentMode="scaleToFill" id="lX8-QA-9zh" userLabel="hiddenView">
@@ -1163,32 +1116,25 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="Inz-ia-kti" userLabel="ShareView">
-                                <rect key="frame" x="15" y="568" width="290" height="100"/>
+                                <rect key="frame" x="0.0" y="568" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="트위터" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fHj-tv-eXZ" userLabel="fsKakaoLinkLabel">
-                                        <rect key="frame" x="20" y="64" width="59" height="21"/>
+                                        <rect key="frame" x="38" y="75" width="59" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="페이스북" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tQa-tm-uG1" userLabel="fsFaceBookLabel">
-                                        <rect key="frame" x="114" y="64" width="59" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카카오톡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dot-DW-cnI" userLabel="fsTwitterLinkLabel">
-                                        <rect key="frame" x="211" y="64" width="59" height="21"/>
+                                        <rect key="frame" x="131" y="75" width="59" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ztZ-Kr-C2T" userLabel="FaceBookBtn">
-                                        <rect key="frame" x="126" y="21" width="35" height="35"/>
+                                        <rect key="frame" x="143" y="32" width="35" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="FaceBookIcon.png">
                                             <color key="titleColor" red="0.4728695643478863" green="0.67998184335190748" blue="0.84613715277777779" alpha="1" colorSpace="calibratedRGB"/>
@@ -1199,7 +1145,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZOn-uL-EHB" userLabel="TwitterBtn">
-                                        <rect key="frame" x="32" y="21" width="35" height="35"/>
+                                        <rect key="frame" x="50" y="32" width="35" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="TwitterIcon.png">
                                             <color key="titleColor" red="0.4728695643478863" green="0.67998184335190748" blue="0.84613715277777779" alpha="1" colorSpace="calibratedRGB"/>
@@ -1209,8 +1155,15 @@
                                             <action selector="actTwitter:" destination="hKf-qs-yKg" eventType="touchUpInside" id="1C3-kM-chE"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카카오톡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dot-DW-cnI" userLabel="fsTwitterLinkLabel">
+                                        <rect key="frame" x="230" y="75" width="59" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iSA-4Q-fA2" userLabel="KakaoLinkBtn">
-                                        <rect key="frame" x="223" y="21" width="35" height="35"/>
+                                        <rect key="frame" x="242" y="32" width="35" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="KakaoLinkIcon.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1220,7 +1173,48 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.83088664321072958" green="0.84325507763442309" blue="0.87142913510101017" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="Vel-iJ-uld" userLabel="ReservationView">
+                                <rect key="frame" x="0.0" y="568" width="320" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="홈페이지 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JUU-rt-CN1" userLabel="fsHomePageLabel">
+                                        <rect key="frame" x="205" y="79" width="59" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jbz-24-qMh" userLabel="CallBtn">
+                                        <rect key="frame" x="67" y="41" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="phoneCall_icon.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="PhoneCall" destination="hKf-qs-yKg" eventType="touchUpInside" id="1Ch-vc-BRp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0CK-3e-wvj" userLabel="HomePageBtn">
+                                        <rect key="frame" x="219" y="41" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="HomePage_icon.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="y3q-qn-nsD" kind="push" identifier="GoWeb" id="1u3-fa-QJY"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화걸기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nYs-je-ti3" userLabel="fsCallLabel">
+                                        <rect key="frame" x="53" y="79" width="59" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.792156862745098" green="0.80392156862745101" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1231,22 +1225,21 @@
                     <connections>
                         <outlet property="bgImage2" destination="b9m-Cy-v9w" id="6A7-g7-yOE"/>
                         <outlet property="bgImage3" destination="ER9-8r-rPu" id="Gma-XA-tab"/>
-                        <outlet property="cellBackGround" destination="1H1-hj-Tai" id="38y-Aq-vS4"/>
-                        <outlet property="clockImg" destination="v1r-x2-N2B" id="Vdc-69-vmC"/>
+                        <outlet property="categoryLabel" destination="gxm-Cr-Ick" id="cUB-tT-SqW"/>
                         <outlet property="currentView" destination="baG-VT-SGh" id="wdb-0Q-a3P"/>
                         <outlet property="endText" destination="etz-QD-1q6" id="X7m-VQ-c4g"/>
                         <outlet property="faceBookBtn" destination="ztZ-Kr-C2T" id="cX9-iV-U5X"/>
-                        <outlet property="favorBackGround" destination="hGa-gi-tnY" id="KVc-ER-6zd"/>
                         <outlet property="favorBtn" destination="Rvr-Hd-hnj" id="zxI-rx-toK"/>
-                        <outlet property="flagImg" destination="tX8-bU-PGy" id="zlJ-8h-jtu"/>
                         <outlet property="gapLabel" destination="CNq-hL-z0c" id="3UF-0O-0w2"/>
                         <outlet property="goExplainBtn" destination="DuN-pX-ocX" id="Jdb-AX-6Vd"/>
                         <outlet property="goMapBtn" destination="Soa-B1-8ia" id="WLT-dy-1hy"/>
                         <outlet property="hiddenView" destination="lX8-QA-9zh" id="bQ1-JR-Ul4"/>
                         <outlet property="homePageButton" destination="0CK-3e-wvj" id="fuQ-So-Z6X"/>
-                        <outlet property="homePageLabel" destination="6cI-BZ-irK" id="ayi-Hp-mg1"/>
                         <outlet property="kakaoBtn" destination="iSA-4Q-fA2" id="XTn-Ob-YJF"/>
-                        <outlet property="labelsBackGround" destination="LKe-fr-D88" id="8Bx-cp-6VO"/>
+                        <outlet property="line1" destination="0t7-vh-fNQ" id="1BX-hD-vyW"/>
+                        <outlet property="line2" destination="wFq-pW-ChL" id="aGY-xo-d9t"/>
+                        <outlet property="line3" destination="oaH-Wo-2E3" id="O8H-RE-x7d"/>
+                        <outlet property="lineBlue" destination="EkF-4A-g28" id="F33-SJ-rfX"/>
                         <outlet property="mapView" destination="ps9-is-zP6" id="SzV-sI-Pf6"/>
                         <outlet property="myLocationBtn" destination="7iW-Bp-F0V" id="oQh-1h-ueH"/>
                         <outlet property="naviBarView" destination="5Jb-WT-i39" id="5cX-RF-NNU"/>
@@ -1255,18 +1248,18 @@
                         <outlet property="phoneLabel" destination="DOM-kA-3ET" id="0Ek-c3-689"/>
                         <outlet property="placeLabel" destination="msm-jI-3xT" id="6ms-UY-mgm"/>
                         <outlet property="preBtn" destination="PqI-9l-Bb5" id="zVc-CA-nP0"/>
+                        <outlet property="reservationBtn" destination="0rF-OL-P0F" id="xOJ-fY-N4k"/>
+                        <outlet property="reservationView" destination="Vel-iJ-uld" id="L1L-Sc-knU"/>
                         <outlet property="scrollView" destination="Qxk-ky-KxQ" id="QKq-Ul-Y9C"/>
                         <outlet property="shareBackBtn" destination="HMv-CM-OHd" id="NYh-Y4-gEH"/>
                         <outlet property="shareBtn" destination="51m-Hw-dRJ" id="VYa-4A-1if"/>
                         <outlet property="shareView" destination="Inz-ia-kti" id="RK9-az-Oyt"/>
                         <outlet property="showFaceBookLabel" destination="tQa-tm-uG1" id="ZKi-rv-cgZ"/>
-                        <outlet property="showFavorBtnLabel" destination="MjW-uc-WHl" id="BPS-oz-Jjs"/>
                         <outlet property="showHomePageBtnLabel" destination="JUU-rt-CN1" id="urG-6x-kyA"/>
-                        <outlet property="showHomePageLabel" destination="HaI-C8-YUr" id="23T-US-CvT"/>
                         <outlet property="showKakaoLinkLabel" destination="fHj-tv-eXZ" id="7Xz-26-iKW"/>
                         <outlet property="showPhoneBtnLabel" destination="nYs-je-ti3" id="Dg6-3n-Pzr"/>
                         <outlet property="showPhoneLabel" destination="y2V-xB-msJ" id="q5i-di-m2c"/>
-                        <outlet property="showShareLabel" destination="PFJ-Bg-i4x" id="Jch-Ld-g0W"/>
+                        <outlet property="showPlaceLabel" destination="Okd-ay-16V" id="Ggw-K7-70J"/>
                         <outlet property="showTimeLabel" destination="zYO-ot-aXl" id="mrw-Gm-CAL"/>
                         <outlet property="showTwitterLabel" destination="dot-DW-cnI" id="TQd-vA-1cc"/>
                         <outlet property="showperiodLabel" destination="4Mj-xR-koW" id="012-a6-EdT"/>
@@ -1287,16 +1280,9 @@
                         <outlet property="weatherPreBtn" destination="aje-9K-isL" id="3eT-wp-KUT"/>
                     </connections>
                 </viewController>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="즐겨찾기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wTZ-YI-2cA" userLabel="fsFavorLabel">
-                    <rect key="frame" x="0.0" y="0.0" width="59" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdn-Vs-xrh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1870" y="547"/>
+            <point key="canvasLocation" x="1958" y="547"/>
         </scene>
         <!--Web Page Controller-->
         <scene sceneID="iHC-Zi-cKV">
@@ -1370,8 +1356,6 @@
     <resources>
         <image name="Art_bg1.png" width="1240" height="584"/>
         <image name="Cell_BackGround.png" width="4904" height="1438"/>
-        <image name="Cell_Clock.png" width="60" height="60"/>
-        <image name="Cell_Flog.png" width="142" height="175"/>
         <image name="Cell_Triangle.png" width="270" height="240"/>
         <image name="FaceBookIcon.png" width="144" height="144"/>
         <image name="FavorBtn_Add.png" width="104" height="97"/>
@@ -1381,17 +1365,15 @@
         <image name="HomePage_icon.png" width="105" height="104"/>
         <image name="KakaoLinkIcon.png" width="144" height="144"/>
         <image name="LocationIcon.png" width="290" height="400"/>
-        <image name="Select_Bar.png" width="414" height="46"/>
-        <image name="ShareBtn.png" width="119" height="90"/>
+        <image name="ReserBtn.png" width="593" height="145"/>
+        <image name="Select_Bar.png" width="414" height="21"/>
+        <image name="ShareBtn.png" width="593" height="145"/>
         <image name="TwitterIcon.png" width="144" height="144"/>
+        <image name="line.png" width="1238" height="4"/>
+        <image name="lineblue.png" width="1238" height="28"/>
         <image name="phoneCall_icon.png" width="105" height="104"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="MUM-G0-BtS"/>
+        <segue reference="1u3-fa-QJY"/>
     </inferredMetricsTieBreakers>
 </document>

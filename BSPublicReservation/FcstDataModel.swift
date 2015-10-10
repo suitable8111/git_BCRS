@@ -21,29 +21,30 @@ class FcstDataModel : NSObject, NSXMLParserDelegate {
     func beginParsing(){
         
         
-        var date = NSDate()
-        var formatter = NSDateFormatter()
+        let date = NSDate()
+        let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyyMMdd"
+        
         var yearDate : String = formatter.stringFromDate(date)
         formatter.dateFormat = "HH"
         var timeDate : String = formatter.stringFromDate(date)
-        if timeDate.toInt() < 2 || timeDate.toInt() >= 23 {
-            timeDate = "23"
-            yearDate = String(yearDate.toInt()!-1)
-        }else if timeDate.toInt() < 5 && timeDate.toInt() >= 2 {
-            timeDate = "02"
-        }else if timeDate.toInt() < 8 && timeDate.toInt() >= 5 {
-            timeDate = "05"
-        }else if timeDate.toInt() < 11 && timeDate.toInt() >= 8 {
-            timeDate = "08"
-        }else if timeDate.toInt() < 14 && timeDate.toInt() >= 11 {
-            timeDate = "11"
-        }else if timeDate.toInt() < 17 && timeDate.toInt() >= 14 {
-            timeDate = "14"
-        }else if timeDate.toInt() < 20 && timeDate.toInt() >= 17 {
-            timeDate = "17"
-        }else if timeDate.toInt() < 23 && timeDate.toInt() >= 20 {
+        if Int(timeDate) < 2 || Int(timeDate) >= 23 {
             timeDate = "20"
+            yearDate = String(Int(yearDate)!-1)
+        }else if Int(timeDate) < 5 && Int(timeDate) >= 2 {
+            timeDate = "23"
+        }else if Int(timeDate) < 8 && Int(timeDate) >= 5 {
+            timeDate = "02"
+        }else if Int(timeDate) < 11 && Int(timeDate) >= 8 {
+            timeDate = "05"
+        }else if Int(timeDate) < 14 && Int(timeDate) >= 11 {
+            timeDate = "08"
+        }else if Int(timeDate) < 17 && Int(timeDate) >= 14 {
+            timeDate = "11"
+        }else if Int(timeDate) < 20 && Int(timeDate) >= 17 {
+            timeDate = "14"
+        }else if Int(timeDate) < 23 && Int(timeDate) >= 20 {
+            timeDate = "17"
         }
         timeDate = timeDate + "00"
         
@@ -52,24 +53,24 @@ class FcstDataModel : NSObject, NSXMLParserDelegate {
         stringURL += String(format: "base_date=%-12@&base_time=%-12@", yearDate,timeDate)
         
         
-        var url = NSURL(string: stringURL)
+        let url = NSURL(string: stringURL)
         
-        parser = NSXMLParser(contentsOfURL: url)!
+        parser = NSXMLParser(contentsOfURL: url!)!
         parser.delegate = self
         parser.parse()
     }
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         element = elementName
         if(elementName as NSString).isEqualToString("item"){
-            elements = NSMutableDictionary.alloc()
+            elements = NSMutableDictionary()
             elements = [:]
-            category = NSMutableString.alloc()
+            category = NSMutableString()
             category = ""
-            fcstDate = NSMutableString.alloc()
+            fcstDate = NSMutableString()
             fcstDate = ""
-            fcstTime = NSMutableString.alloc()
+            fcstTime = NSMutableString()
             fcstTime = ""
-            fcstValue = NSMutableString.alloc()
+            fcstValue = NSMutableString()
             fcstValue = ""
         }
     }
@@ -90,15 +91,15 @@ class FcstDataModel : NSObject, NSXMLParserDelegate {
             posts.addObject(elements)
         }
     }
-    func parser(parser: NSXMLParser, foundCharacters string: String?) {
+    func parser(parser: NSXMLParser, foundCharacters string: String) {
         if element.isEqualToString("category"){
-            category.appendString(string!)
+            category.appendString(string)
         }else if element.isEqualToString("fcstDate"){
-            fcstDate.appendString(string!)
+            fcstDate.appendString(string)
         }else if element.isEqualToString("fcstTime"){
-            fcstTime.appendString(string!)
+            fcstTime.appendString(string)
         }else if element.isEqualToString("fcstValue"){
-            fcstValue.appendString(string!)
+            fcstValue.appendString(string)
         }
     }
 }

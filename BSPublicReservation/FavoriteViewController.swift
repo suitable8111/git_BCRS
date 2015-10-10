@@ -50,11 +50,14 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        let path = getFileName("myFavorite.plist")
+        let path = getFileName("/myFavorite.plist")
         let fileManager = NSFileManager.defaultManager()
         if(!fileManager.fileExistsAtPath(path)){
             let orgPath = NSBundle.mainBundle().pathForResource("myFavorite", ofType: "plist")
-            fileManager.copyItemAtPath(orgPath!, toPath: path, error: nil)
+            do {
+                try fileManager.copyItemAtPath(orgPath!, toPath: path)
+            } catch _ {
+            }
         }
         arrFavorite = NSMutableArray(contentsOfFile: path)
         
@@ -71,17 +74,17 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func animateTable(){
         tbView.reloadData()
-        let cells = tbView.visibleCells()
+        let cells = tbView.visibleCells
         let tableHeight : CGFloat = tbView.bounds.size.height
         
         for i in cells {
-            let cell : UITableViewCell = i as! UITableViewCell
+            let cell : UITableViewCell = i 
             cell.transform = CGAffineTransformMakeTranslation(0, tableHeight)
         }
         var index = 0
         for a in cells {
-            let cell: UITableViewCell = a as! UITableViewCell
-            UIView.animateWithDuration(1.0, delay: 0.02 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
+            let cell: UITableViewCell = a 
+            UIView.animateWithDuration(1.0, delay: 0.02 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: {
                 cell.transform = CGAffineTransformMakeTranslation(0, 0);
                 }, completion: nil)
             
@@ -90,8 +93,8 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func getFileName(fileName:String) -> String {
         let docsDir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let docPath = docsDir[0] as! String
-        let fullName = docPath.stringByAppendingPathComponent(fileName)
+        let docPath = docsDir[0] 
+        let fullName = docPath.stringByAppendingString(fileName)
         return fullName
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -102,12 +105,12 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell : UITableViewCell! = tbView.dequeueReusableCellWithIdentifier("FavorCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell : UITableViewCell! = tbView.dequeueReusableCellWithIdentifier("FavorCell", forIndexPath: indexPath) 
         
         let titleLabel :UILabel = cell.viewWithTag(201) as! UILabel
         let dDayLabel :UILabel = cell.viewWithTag(202) as! UILabel
         
-        b = tbView.visibleCells().count + 1
+        b = tbView.visibleCells.count + 1
         if a < b {
             titleLabel.frame.size = CGSizeMake(titleLabel.frame.width*(view.frame.size.width)/320, titleLabel.frame.height*(view.frame.height)/568)
             dDayLabel.frame.size = CGSizeMake(dDayLabel.frame.width*(view.frame.size.width)/320, dDayLabel.frame.height*(view.frame.height)/568)
@@ -133,12 +136,12 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
 
         
             let cal = NSCalendar(calendarIdentifier: NSGregorianCalendar)
-            let c1 = cal!.components(NSCalendarUnit.DayCalendarUnit, fromDate: date1!, toDate: date2!, options: NSCalendarOptions(0))
+            let c1 = cal!.components(NSCalendarUnit.NSDayCalendarUnit, fromDate: date1!, toDate: date2!, options: NSCalendarOptions(rawValue: 0))
         
             if(c1.day < 0) {
                     let favorEndDate = replaceSpeciaChar(dic["endDate"]!)
                     let date3 = formatter.dateFromString(favorEndDate)
-                    let c2 = cal!.components(NSCalendarUnit.DayCalendarUnit, fromDate: date1!, toDate: date3!, options: NSCalendarOptions(0))
+                    let c2 = cal!.components(NSCalendarUnit.NSDayCalendarUnit, fromDate: date1!, toDate: date3!, options: NSCalendarOptions(rawValue: 0))
                     dDayLabel.text = String(c2.day)+"일 까지 남음"
                 if(c2.day < 0){
                     dDayLabel.text = "지나갔습니다"
@@ -155,7 +158,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             arrFavorite.removeObjectAtIndex(indexPath.row)
-            let path = getFileName("myFavorite.plist")
+            let path = getFileName("/myFavorite.plist")
             arrFavorite.writeToFile(path, atomically: true)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
@@ -163,13 +166,13 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "goFavorDetail"{
-            var FavorDetailVC = segue.destinationViewController as! FavorDetailViewController
-            FavorDetailVC.titleName = arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow()!.row).valueForKey("title") as! String
-            FavorDetailVC.serialID =  arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow()!.row).valueForKey("serialID") as! String
-            FavorDetailVC.startDate =  arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow()!.row).valueForKey("startDate") as! String
-            FavorDetailVC.endDate =  arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow()!.row).valueForKey("endDate") as! String
-            FavorDetailVC.currentState = arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow()!.row).valueForKey("currentState") as! String
-            FavorDetailVC.indexPathRow = self.tbView.indexPathForSelectedRow()!.row
+            let FavorDetailVC = segue.destinationViewController as! FavorDetailViewController
+            FavorDetailVC.titleName = arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow!.row).valueForKey("title") as! String
+            FavorDetailVC.serialID =  arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow!.row).valueForKey("serialID") as! String
+            FavorDetailVC.startDate =  arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow!.row).valueForKey("startDate") as! String
+            FavorDetailVC.endDate =  arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow!.row).valueForKey("endDate") as! String
+            FavorDetailVC.currentState = arrFavorite.objectAtIndex(self.tbView.indexPathForSelectedRow!.row).valueForKey("currentState") as! String
+            FavorDetailVC.indexPathRow = self.tbView.indexPathForSelectedRow!.row
         
         }
     }
@@ -189,7 +192,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func replaceSpeciaChar(str:String) -> String {
-        var str_change = NSMutableString(string: str)
+        let str_change = NSMutableString(string: str)
         str_change.replaceOccurrencesOfString(".", withString: "-", options: NSStringCompareOptions.LiteralSearch, range: NSMakeRange(0, str_change.length))
         
         return str_change as String

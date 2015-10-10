@@ -37,24 +37,25 @@ class DataModel : NSObject, NSXMLParserDelegate {
         }
         
         stringURL = stringURL + String(timeInt)
-        var url = NSURL(string: stringURL)
-        parser = NSXMLParser(contentsOfURL: url)!
+        let url = NSURL(string: stringURL)
+        parser = NSXMLParser(contentsOfURL: url!)!
         parser.delegate = self
         parser.parse()
     }
     
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+        
         element = elementName
         if(elementName as NSString).isEqualToString("item"){
-            elements = NSMutableDictionary.alloc()
+            elements = NSMutableDictionary()
             elements = [:]
-            title1 = NSMutableString.alloc()
+            title1 = NSMutableString()
             title1 = ""
-            startDate = NSMutableString.alloc()
+            startDate = NSMutableString()
             startDate = ""
-            endDate = NSMutableString.alloc()
+            endDate = NSMutableString()
             endDate = ""
-            serialID = NSMutableString.alloc()
+            serialID = NSMutableString()
             serialID = ""
         }
     }
@@ -77,17 +78,17 @@ class DataModel : NSObject, NSXMLParserDelegate {
         }
        
     }
-    func parser(parser: NSXMLParser, foundCharacters string: String?) {
+    func parser(parser: NSXMLParser, foundCharacters string: String) {
         if element.isEqualToString("dataTitle"){
-            title1.appendString(string!)
+            title1.appendString(string)
         }else if element.isEqualToString("startDate"){
-            let newString = string!.stringByReplacingOccurrencesOfString("-", withString: ".", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            let newString = string.stringByReplacingOccurrencesOfString("-", withString: ".", options: NSStringCompareOptions.LiteralSearch, range: nil)
             startDate.appendString(newString)
         }else if element.isEqualToString("endDate"){
-            let newString = string!.stringByReplacingOccurrencesOfString("-", withString: ".", options: NSStringCompareOptions.LiteralSearch, range: nil)
+            let newString = string.stringByReplacingOccurrencesOfString("-", withString: ".", options: NSStringCompareOptions.LiteralSearch, range: nil)
             endDate.appendString(newString)
         }else if element.isEqualToString("dataSid"){
-            serialID.appendString(string!)
+            serialID.appendString(string)
         }
     }
 }

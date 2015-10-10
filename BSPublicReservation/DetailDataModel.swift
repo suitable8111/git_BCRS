@@ -9,6 +9,7 @@
 import Foundation
 
 class DetailDataModel : NSObject, NSXMLParserDelegate {
+    
     var parser = NSXMLParser()
     var posts = NSMutableArray()
     var elements = NSMutableDictionary()
@@ -41,35 +42,35 @@ class DetailDataModel : NSObject, NSXMLParserDelegate {
         }
         
         stringURL = stringURL + dataSid
-        var url = NSURL(string: stringURL)
-        parser = NSXMLParser(contentsOfURL: url)!
+        let url = NSURL(string: stringURL)
+        parser = NSXMLParser(contentsOfURL: url!)!
         parser.delegate = self
         parser.parse()
     }
     
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         element = elementName
         
         if(elementName as NSString).isEqualToString("item"){
-            elements = NSMutableDictionary.alloc()
+            elements = NSMutableDictionary()
             elements = [:]
-            title = NSMutableString.alloc()
+            title = NSMutableString()
             title = ""
-            place = NSMutableString.alloc()
+            place = NSMutableString()
             place = ""
-            phoneNum = NSMutableString.alloc()
+            phoneNum = NSMutableString()
             phoneNum = ""
-            homePage = NSMutableString.alloc()
+            homePage = NSMutableString()
             homePage = ""
-            context = NSMutableString.alloc()
+            context = NSMutableString()
             context = ""
-            latitude = NSMutableString.alloc()
+            latitude = NSMutableString()
             latitude = ""
-            longitude = NSMutableString.alloc()
+            longitude = NSMutableString()
             longitude = ""
-            time = NSMutableString.alloc()
+            time = NSMutableString()
             time = ""
-            period = NSMutableString.alloc()
+            period = NSMutableString()
             period = ""
         }
     }
@@ -107,33 +108,33 @@ class DetailDataModel : NSObject, NSXMLParserDelegate {
         //println(elements)
     }
     
-    func parser(parser: NSXMLParser, foundCharacters string: String?) {
+    func parser(parser: NSXMLParser, foundCharacters string: String) {
         if element.isEqualToString("dataTitle"){
-            title.appendString(string!)
+            title.appendString(string)
         }
         if element.isEqualToString("place"){
-            place.appendString(string!)
+            place.appendString(string)
         }
         if element.isEqualToString("tel"){
-            phoneNum.appendString(string!)
+            phoneNum.appendString(string)
         }
         if element.isEqualToString("userHomepage"){
-            homePage.appendString(string!)
+            homePage.appendString(string)
         }
         if element.isEqualToString("dataContent"){
-            context.appendString(string!)
+            context.appendString(string)
         }
         if element.isEqualToString("wgsx"){
-            latitude.appendString(string!)
+            latitude.appendString(string)
         }
         if element.isEqualToString("wgsy"){
-            longitude.appendString(string!)
+            longitude.appendString(string)
         }
         if element.isEqualToString("time"){
-            time.appendString(string!)
+            time.appendString(string)
         }
         if element.isEqualToString("useperiod"){
-            period.appendString(string!)
+            period.appendString(string)
         }
 
         

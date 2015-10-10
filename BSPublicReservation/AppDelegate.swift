@@ -13,31 +13,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    //내부 저장소에 저장하는 기능 initPlist를 통하여 아이폰 내부에 저장함
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         initPlist()
         return true
     }
     func initPlist(){
-        var fileManager = NSFileManager()
-        //var error = NSError()
+        let fileManager = NSFileManager()
         var path = NSString()
         path = getPlistPath()
-        var success = fileManager.fileExistsAtPath(path as String)
+        let success = fileManager.fileExistsAtPath(path as String)
         
+        //myFavorite.plist 파일이 없는 경우, success = false 이므로 메인번들에서 myFavortie.plist 붙여 복사한다.
         if(!success){
-            let defalutPath = NSBundle.mainBundle().resourcePath?.stringByAppendingPathComponent("myFavorite.plist")
-            
-                fileManager.copyItemAtPath(defalutPath!, toPath: path as String, error: nil)
+            let defalutPath = NSBundle.mainBundle().resourcePath?.stringByAppendingString("/myFavorite.plist")
+            //let defalutPath =
+            //let resultPath = NSURL.URLByAppendingPathComponent(NSURL(fileURLWithPath: "/myFavorite.plist"))
+            do {
+                try fileManager.copyItemAtPath(defalutPath!, toPath: path as String)
+            } catch _ {
+            }
         }
         
     }
-    
+    //Plist파일을 가져오는 기능
     func getPlistPath() -> String {
         var docsDir = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let docPath = docsDir[0] as! String
-        let fullName = docPath.stringByAppendingPathComponent("myFavorite.plist")
+        let docPath = docsDir[0] 
+        let fullName = docPath.stringByAppendingString("/myFavorite.plist")
+        
         return fullName
+    
     }
 
     func applicationWillResignActive(application: UIApplication) {
